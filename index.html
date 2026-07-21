@@ -278,7 +278,7 @@
                 </p>
 
                 <!-- Interactive Search Box -->
-                <form id="hero-search-form" class="glass-dark p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl md:rounded-full max-w-4xl mx-auto flex flex-col md:flex-row items-stretch md:items-center gap-1.5 sm:gap-2 text-left shadow-2xl border border-white/20">
+                <form id="hero-search-form" class="relative z-40 glass-dark p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl md:rounded-full max-w-4xl mx-auto flex flex-col md:flex-row items-stretch md:items-center gap-1.5 sm:gap-2 text-left shadow-2xl border border-white/20">
                     <div class="flex-1 w-full px-3 py-1.5 sm:px-4 sm:py-2.5 flex flex-col items-start border-b md:border-b-0 md:border-r border-white/15 rounded-xl md:rounded-none bg-white/5 md:bg-transparent">
                         <span class="text-[8px] sm:text-[10px] uppercase font-bold font-display text-on-primary-container tracking-widest mb-0.5">Destination</span>
                         <input id="search-destination" class="bg-transparent border-none p-0 text-white placeholder-white/50 focus:ring-0 w-full text-xs sm:text-sm font-sans outline-none" placeholder="Where to? (e.g. Nepal, Iceland)" type="text"/>
@@ -296,7 +296,7 @@
                         <input type="hidden" id="search-type" value="" />
 
                         <!-- Custom Glass Options Menu with Solid Opaque Background & High Z-Index -->
-                        <div id="custom-select-options" class="absolute top-full left-0 right-0 mt-2 z-[100] bg-[#002812] rounded-2xl p-1.5 shadow-[0_20px_60px_rgba(0,0,0,0.9)] border border-white/30 opacity-0 pointer-events-none transform -translate-y-2 transition-all duration-200 backdrop-blur-2xl max-h-60 overflow-y-auto">
+                        <div id="custom-select-options" class="absolute top-full left-0 right-0 mt-2 z-[100] bg-[#002b13] text-white rounded-2xl p-1.5 shadow-[0_20px_60px_rgba(0,0,0,0.9)] border border-white/30 opacity-0 pointer-events-none transform -translate-y-2 transition-all duration-200 backdrop-blur-2xl max-h-60 overflow-y-auto">
                             <div class="custom-option px-3 py-2.5 rounded-xl text-xs sm:text-sm text-on-primary-container bg-white/15 hover:bg-white/25 cursor-pointer transition-colors flex items-center justify-between font-semibold active:scale-[0.98]" data-value="">
                                 <span>All Adventure Types</span>
                                 <span class="material-symbols-outlined text-sm check-icon">check</span>
@@ -334,7 +334,7 @@
                 </form>
 
                 <!-- Stats Breakdown Cards -->
-                <div class="mt-6 sm:mt-12 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-6 max-w-3xl mx-auto">
+                <div class="relative z-10 mt-6 sm:mt-12 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-6 max-w-3xl mx-auto">
                     <div class="glass-dark p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-white/10 text-center">
                         <p class="font-display font-bold text-lg sm:text-3xl text-on-primary-container mb-0">250+</p>
                         <p class="font-display text-[8px] sm:text-[10px] uppercase text-white/80 tracking-widest">Adventures</p>
@@ -570,6 +570,126 @@
                                 Book Now
                             </button>
                         </div>
+                    </div>
+
+                    <!-- Trip Card 4: Camping -->
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col hover-lift border border-outline-variant/30 trip-card" data-title="Swiss Alpine Wilderness Camping" data-location="Switzerland" data-category="Camping" data-price="2150">
+                        <div class="relative h-[220px] sm:h-[260px] overflow-hidden">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
+                                 style="background-image: url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=800&q=80');">
+                            </div>
+                            <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-[10px] font-display font-bold uppercase tracking-widest shadow-md">Switzerland</div>
+                            <button class="favorite-toggle-btn absolute top-4 right-4 w-9 h-9 rounded-full glass flex items-center justify-center text-white hover:text-red-500 transition-colors shadow-md active:scale-90" title="Save to Wishlist" data-trip="Swiss Alpine Wilderness Camping">
+                                <span class="material-symbols-outlined text-lg">favorite</span>
+                            </button>
+                            <div class="absolute bottom-4 right-4 glass px-3.5 py-1 rounded-full text-primary font-display font-bold text-xs sm:text-sm shadow-md">$2,150</div>
+                        </div>
+                        <div class="p-5 sm:p-7 flex flex-col flex-1">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 mb-2 sm:mb-3">
+                                <h3 class="font-display font-bold text-lg sm:text-xl text-primary leading-snug">Swiss Alpine Wilderness Camping</h3>
+                                <div class="flex items-center gap-1 text-on-primary-container shrink-0">
+                                    <span class="material-symbols-outlined text-sm sm:text-base">schedule</span>
+                                    <span class="text-[11px] sm:text-xs font-bold font-display">6 Days</span>
+                                </div>
+                            </div>
+                            <p class="text-on-surface-variant text-xs sm:text-sm mb-5 flex-1 leading-relaxed">Immerse in pristine high-altitude meadows and starlit glacier nights of the Swiss Alps.</p>
+                            <button class="book-now-btn w-full py-3 border-2 border-primary text-primary font-display font-bold text-xs uppercase tracking-wider rounded-full hover:bg-primary hover:text-white transition-all transform active:scale-95 shadow-sm min-h-[44px]" data-trip="Swiss Alpine Wilderness Camping" data-price="2150" data-days="6" data-location="Switzerland">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Trip Card 5: Wildlife Safari -->
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col hover-lift border border-outline-variant/30 trip-card" data-title="High Mountain Wildlife Safari" data-location="Tanzania" data-category="Wildlife" data-price="5100">
+                        <div class="relative h-[220px] sm:h-[260px] overflow-hidden">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
+                                 style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80');">
+                            </div>
+                            <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-[10px] font-display font-bold uppercase tracking-widest shadow-md">Tanzania</div>
+                            <button class="favorite-toggle-btn absolute top-4 right-4 w-9 h-9 rounded-full glass flex items-center justify-center text-white hover:text-red-500 transition-colors shadow-md active:scale-90" title="Save to Wishlist" data-trip="High Mountain Wildlife Safari">
+                                <span class="material-symbols-outlined text-lg">favorite</span>
+                            </button>
+                            <div class="absolute bottom-4 right-4 glass px-3.5 py-1 rounded-full text-primary font-display font-bold text-xs sm:text-sm shadow-md">$5,100</div>
+                        </div>
+                        <div class="p-5 sm:p-7 flex flex-col flex-1">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 mb-2 sm:mb-3">
+                                <h3 class="font-display font-bold text-lg sm:text-xl text-primary leading-snug">High Mountain Wildlife Safari</h3>
+                                <div class="flex items-center gap-1 text-on-primary-container shrink-0">
+                                    <span class="material-symbols-outlined text-sm sm:text-base">schedule</span>
+                                    <span class="text-[11px] sm:text-xs font-bold font-display">9 Days</span>
+                                </div>
+                            </div>
+                            <p class="text-on-surface-variant text-xs sm:text-sm mb-5 flex-1 leading-relaxed">Track rare snow wildlife and alpine fauna with expert rangers in untouched wilderness.</p>
+                            <button class="book-now-btn w-full py-3 border-2 border-primary text-primary font-display font-bold text-xs uppercase tracking-wider rounded-full hover:bg-primary hover:text-white transition-all transform active:scale-95 shadow-sm min-h-[44px]" data-trip="High Mountain Wildlife Safari" data-price="5100" data-days="9" data-location="Tanzania">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Trip Card 6: Cycling -->
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col hover-lift border border-outline-variant/30 trip-card" data-title="Dolomites Alpine Cycling Pass" data-location="Italy" data-category="Cycling" data-price="3200">
+                        <div class="relative h-[220px] sm:h-[260px] overflow-hidden">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
+                                 style="background-image: url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80');">
+                            </div>
+                            <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-[10px] font-display font-bold uppercase tracking-widest shadow-md">Italy</div>
+                            <button class="favorite-toggle-btn absolute top-4 right-4 w-9 h-9 rounded-full glass flex items-center justify-center text-white hover:text-red-500 transition-colors shadow-md active:scale-90" title="Save to Wishlist" data-trip="Dolomites Alpine Cycling Pass">
+                                <span class="material-symbols-outlined text-lg">favorite</span>
+                            </button>
+                            <div class="absolute bottom-4 right-4 glass px-3.5 py-1 rounded-full text-primary font-display font-bold text-xs sm:text-sm shadow-md">$3,200</div>
+                        </div>
+                        <div class="p-5 sm:p-7 flex flex-col flex-1">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 mb-2 sm:mb-3">
+                                <h3 class="font-display font-bold text-lg sm:text-xl text-primary leading-snug">Dolomites Alpine Cycling Pass</h3>
+                                <div class="flex items-center gap-1 text-on-primary-container shrink-0">
+                                    <span class="material-symbols-outlined text-sm sm:text-base">schedule</span>
+                                    <span class="text-[11px] sm:text-xs font-bold font-display">7 Days</span>
+                                </div>
+                            </div>
+                            <p class="text-on-surface-variant text-xs sm:text-sm mb-5 flex-1 leading-relaxed">Conquer legendary mountain passes and hairpin turns through Italy's UNESCO peaks.</p>
+                            <button class="book-now-btn w-full py-3 border-2 border-primary text-primary font-display font-bold text-xs uppercase tracking-wider rounded-full hover:bg-primary hover:text-white transition-all transform active:scale-95 shadow-sm min-h-[44px]" data-trip="Dolomites Alpine Cycling Pass" data-price="3200" data-days="7" data-location="Italy">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Trip Card 7: Kayaking -->
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col hover-lift border border-outline-variant/30 trip-card" data-title="Norwegian Fjords Sea Kayaking" data-location="Norway" data-category="Kayaking" data-price="2950">
+                        <div class="relative h-[220px] sm:h-[260px] overflow-hidden">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
+                                 style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80');">
+                            </div>
+                            <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-[10px] font-display font-bold uppercase tracking-widest shadow-md">Norway</div>
+                            <button class="favorite-toggle-btn absolute top-4 right-4 w-9 h-9 rounded-full glass flex items-center justify-center text-white hover:text-red-500 transition-colors shadow-md active:scale-90" title="Save to Wishlist" data-trip="Norwegian Fjords Sea Kayaking">
+                                <span class="material-symbols-outlined text-lg">favorite</span>
+                            </button>
+                            <div class="absolute bottom-4 right-4 glass px-3.5 py-1 rounded-full text-primary font-display font-bold text-xs sm:text-sm shadow-md">$2,950</div>
+                        </div>
+                        <div class="p-5 sm:p-7 flex flex-col flex-1">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 mb-2 sm:mb-3">
+                                <h3 class="font-display font-bold text-lg sm:text-xl text-primary leading-snug">Norwegian Fjords Sea Kayaking</h3>
+                                <div class="flex items-center gap-1 text-on-primary-container shrink-0">
+                                    <span class="material-symbols-outlined text-sm sm:text-base">schedule</span>
+                                    <span class="text-[11px] sm:text-xs font-bold font-display">7 Days</span>
+                                </div>
+                            </div>
+                            <p class="text-on-surface-variant text-xs sm:text-sm mb-5 flex-1 leading-relaxed">Paddle through dramatic glassy fjords and serene alpine waters under thunderous waterfalls.</p>
+                            <button class="book-now-btn w-full py-3 border-2 border-primary text-primary font-display font-bold text-xs uppercase tracking-wider rounded-full hover:bg-primary hover:text-white transition-all transform active:scale-95 shadow-sm min-h-[44px]" data-trip="Norwegian Fjords Sea Kayaking" data-price="2950" data-days="7" data-location="Norway">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Friendly Empty State Container -->
+                    <div id="no-trips-msg" class="hidden col-span-full text-center py-12 px-6 bg-white rounded-3xl border border-outline-variant/30 shadow-sm max-w-md mx-auto my-4">
+                        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mx-auto mb-4">
+                            <span class="material-symbols-outlined text-3xl">travel_explore</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-primary mb-2">No Adventures Found</h3>
+                        <p class="text-on-surface-variant text-xs mb-6 leading-relaxed">We couldn't find any trips matching your exact search criteria. Click below to reset filters and view all expeditions.</p>
+                        <button id="reset-trips-btn" class="bg-primary text-white font-display font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-full hover:bg-primary-container transition-all active:scale-95 shadow-md">
+                            Show All Signature Trips
+                        </button>
                     </div>
 
                 </div>
