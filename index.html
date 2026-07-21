@@ -283,16 +283,45 @@
                         <span class="text-[8px] sm:text-[10px] uppercase font-bold font-display text-on-primary-container tracking-widest mb-0.5">Destination</span>
                         <input id="search-destination" class="bg-transparent border-none p-0 text-white placeholder-white/50 focus:ring-0 w-full text-xs sm:text-sm font-sans outline-none" placeholder="Where to? (e.g. Nepal, Iceland)" type="text"/>
                     </div>
-                    <div class="flex-1 w-full px-3 py-1.5 sm:px-4 sm:py-2.5 flex flex-col items-start border-b md:border-b-0 md:border-r border-white/15 rounded-xl md:rounded-none bg-white/5 md:bg-transparent">
+                    <div class="flex-1 w-full px-3 py-1.5 sm:px-4 sm:py-2.5 flex flex-col items-start border-b md:border-b-0 md:border-r border-white/15 rounded-xl md:rounded-none bg-white/5 md:bg-transparent relative">
                         <span class="text-[8px] sm:text-[10px] uppercase font-bold font-display text-on-primary-container tracking-widest mb-0.5">Adventure Type</span>
-                        <select id="search-type" class="bg-transparent border-none p-0 text-white focus:ring-0 w-full text-xs sm:text-sm font-sans cursor-pointer appearance-none outline-none">
-                            <option class="bg-primary text-white" value="">All Adventure Types</option>
-                            <option class="bg-primary text-white" value="Hiking">Hiking &amp; Trekking</option>
-                            <option class="bg-primary text-white" value="Camping">Camping Expedition</option>
-                            <option class="bg-primary text-white" value="Wildlife">Wildlife Safari</option>
-                            <option class="bg-primary text-white" value="Cycling">Alpine Cycling</option>
-                            <option class="bg-primary text-white" value="Kayaking">Fjord Kayaking</option>
-                        </select>
+                        
+                        <!-- Custom Select Trigger -->
+                        <button type="button" id="custom-select-trigger" class="w-full flex items-center justify-between text-white text-xs sm:text-sm font-sans focus:outline-none cursor-pointer p-0 bg-transparent text-left">
+                            <span id="custom-select-label" class="truncate font-medium">All Adventure Types</span>
+                            <span class="material-symbols-outlined text-base text-on-primary-container transition-transform duration-200" id="custom-select-arrow">expand_more</span>
+                        </button>
+
+                        <!-- Hidden Input for Form & Filter State -->
+                        <input type="hidden" id="search-type" value="" />
+
+                        <!-- Custom Glass Options Menu -->
+                        <div id="custom-select-options" class="absolute top-full left-0 right-0 mt-2 z-50 glass-dark rounded-2xl p-1.5 shadow-2xl border border-white/20 opacity-0 pointer-events-none transform -translate-y-2 transition-all duration-200 backdrop-blur-2xl max-h-60 overflow-y-auto">
+                            <div class="custom-option px-3 py-2 rounded-xl text-xs sm:text-sm text-on-primary-container bg-white/10 hover:bg-white/20 cursor-pointer transition-colors flex items-center justify-between font-semibold active:scale-[0.98]" data-value="">
+                                <span>All Adventure Types</span>
+                                <span class="material-symbols-outlined text-sm check-icon">check</span>
+                            </div>
+                            <div class="custom-option px-3 py-2 rounded-xl text-xs sm:text-sm text-white/90 hover:bg-white/15 hover:text-on-primary-container cursor-pointer transition-colors flex items-center justify-between font-medium active:scale-[0.98]" data-value="Hiking">
+                                <span>Hiking &amp; Trekking</span>
+                                <span class="material-symbols-outlined text-sm check-icon hidden">check</span>
+                            </div>
+                            <div class="custom-option px-3 py-2 rounded-xl text-xs sm:text-sm text-white/90 hover:bg-white/15 hover:text-on-primary-container cursor-pointer transition-colors flex items-center justify-between font-medium active:scale-[0.98]" data-value="Camping">
+                                <span>Camping Expedition</span>
+                                <span class="material-symbols-outlined text-sm check-icon hidden">check</span>
+                            </div>
+                            <div class="custom-option px-3 py-2 rounded-xl text-xs sm:text-sm text-white/90 hover:bg-white/15 hover:text-on-primary-container cursor-pointer transition-colors flex items-center justify-between font-medium active:scale-[0.98]" data-value="Wildlife">
+                                <span>Wildlife Safari</span>
+                                <span class="material-symbols-outlined text-sm check-icon hidden">check</span>
+                            </div>
+                            <div class="custom-option px-3 py-2 rounded-xl text-xs sm:text-sm text-white/90 hover:bg-white/15 hover:text-on-primary-container cursor-pointer transition-colors flex items-center justify-between font-medium active:scale-[0.98]" data-value="Cycling">
+                                <span>Alpine Cycling</span>
+                                <span class="material-symbols-outlined text-sm check-icon hidden">check</span>
+                            </div>
+                            <div class="custom-option px-3 py-2 rounded-xl text-xs sm:text-sm text-white/90 hover:bg-white/15 hover:text-on-primary-container cursor-pointer transition-colors flex items-center justify-between font-medium active:scale-[0.98]" data-value="Kayaking">
+                                <span>Fjord Kayaking</span>
+                                <span class="material-symbols-outlined text-sm check-icon hidden">check</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex-1 w-full px-3 py-1.5 sm:px-4 sm:py-2.5 flex flex-col items-start rounded-xl md:rounded-none bg-white/5 md:bg-transparent">
                         <span class="text-[8px] sm:text-[10px] uppercase font-bold font-display text-on-primary-container tracking-widest mb-0.5">Season / Dates</span>
@@ -978,6 +1007,68 @@
                     }
                     updateWishlistBadge();
                 });
+            });
+
+            // 6.5 Custom Glassmorphic Select Dropdown Logic
+            const selectTrigger = document.getElementById('custom-select-trigger');
+            const selectOptions = document.getElementById('custom-select-options');
+            const selectLabel = document.getElementById('custom-select-label');
+            const selectArrow = document.getElementById('custom-select-arrow');
+            const hiddenSearchInput = document.getElementById('search-type');
+            const optionItems = document.querySelectorAll('.custom-option');
+
+            let isSelectOpen = false;
+
+            function toggleCustomSelect(open) {
+                isSelectOpen = open !== undefined ? open : !isSelectOpen;
+                if (isSelectOpen) {
+                    selectOptions.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
+                    selectOptions.classList.add('opacity-100', 'translate-y-0');
+                    selectArrow.classList.add('rotate-180');
+                } else {
+                    selectOptions.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+                    selectOptions.classList.remove('opacity-100', 'translate-y-0');
+                    selectArrow.classList.remove('rotate-180');
+                }
+            }
+
+            if (selectTrigger) {
+                selectTrigger.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleCustomSelect();
+                });
+            }
+
+            optionItems.forEach(opt => {
+                opt.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const value = opt.dataset.value;
+                    const text = opt.querySelector('span').textContent;
+                    
+                    if (hiddenSearchInput) hiddenSearchInput.value = value;
+                    if (selectLabel) selectLabel.textContent = text;
+
+                    optionItems.forEach(item => {
+                        const check = item.querySelector('.check-icon');
+                        if (item === opt) {
+                            item.classList.add('text-on-primary-container', 'bg-white/10');
+                            item.classList.remove('text-white/90');
+                            if (check) check.classList.remove('hidden');
+                        } else {
+                            item.classList.remove('text-on-primary-container', 'bg-white/10');
+                            item.classList.add('text-white/90');
+                            if (check) check.classList.add('hidden');
+                        }
+                    });
+
+                    toggleCustomSelect(false);
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (isSelectOpen && !e.target.closest('#custom-select-options') && !e.target.closest('#custom-select-trigger')) {
+                    toggleCustomSelect(false);
+                }
             });
 
             // 7. Interactive Search & Category Filtering
