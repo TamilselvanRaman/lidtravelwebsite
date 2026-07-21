@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Lidtravel Alpine | Discover Extraordinary Adventures</title>
+    <meta name="description" content="Expert-led small group luxury expeditions & adventures across the world's most breathtaking wildernesses." />
+    
+    <!-- Tailwind CSS with CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Google Fonts: Manrope (Headings/Brand) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <!-- Tailwind Configuration matching Alpine Premium Design System -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#003b1b",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#14532d",
+                        "on-primary-container": "#87c695",
+                        "secondary": "#006e2f",
+                        "secondary-container": "#6bff8f",
+                        "on-secondary-container": "#007432",
+                        "tertiary": "#572200",
+                        "tertiary-container": "#7a3300",
+                        "on-tertiary-container": "#ffa06c",
+                        "background": "#f9f9f7",
+                        "on-background": "#1a1c1b",
+                        "surface": "#ffffff",
+                        "on-surface": "#1a1c1b",
+                        "on-surface-variant": "#404941",
+                        "surface-dim": "#dadad8",
+                        "surface-bright": "#f9f9f7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f4f4f2",
+                        "surface-container": "#eeeeec",
+                        "surface-container-high": "#e8e8e6",
+                        "surface-container-highest": "#e2e3e1",
+                        "outline": "#717970",
+                        "outline-variant": "#c0c9be",
+                        "text-primary": "#111827",
+                        "text-secondary": "#6B7280",
+                        "brand-lime": "#A0CC3D",
+                        "brand-berry": "#772459"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "24px",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "section-gap": "120px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px",
+                        "base": "8px"
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "display": ["Manrope", "sans-serif"],
+                        "label-caps": ["Manrope", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-lg": ["Manrope", "sans-serif"],
+                        "display-hero": ["Manrope", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Glassmorphism Design System */
+        .glass {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .glass-dark {
+            background: rgba(0, 31, 14, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .hover-lift {
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -10px rgba(0, 59, 27, 0.15);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-bounce-subtle {
+            animation: bounce-subtle 2.5s infinite ease-in-out;
+        }
+        @keyframes toast-in {
+            from { transform: translateY(100%) scale(0.9); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        .animate-toast {
+            animation: toast-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background font-sans selection:bg-on-primary-container selection:text-primary min-h-screen flex flex-col">
+
+    <!-- HEADER: TopNavBar -->
+    <header class="fixed top-0 w-full z-50 transition-all duration-500 bg-transparent" id="top-nav">
+        <nav class="flex justify-between items-center px-4 sm:px-8 md:px-margin-desktop py-4 max-w-[1440px] mx-auto">
+            
+            <!-- Logo & Brand -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full bg-on-primary-container/20 flex items-center justify-center border border-on-primary-container/40 group-hover:scale-105 transition-transform">
+                    <span class="material-symbols-outlined text-on-primary-container text-2xl">landscape</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display font-extrabold text-xl tracking-tight text-white leading-none">LIDTRAVEL</span>
+                    <span class="font-display font-semibold text-[10px] tracking-[0.25em] text-on-primary-container uppercase leading-tight">ALPINE</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <div class="hidden md:flex gap-8 items-center">
+                <a class="font-display text-xs font-bold uppercase tracking-widest text-white hover:text-on-primary-container transition-colors" href="#destinations">Destinations</a>
+                <a class="font-display text-xs font-bold uppercase tracking-widest text-white hover:text-on-primary-container transition-colors border-b-2 border-on-primary-container pb-0.5" href="#experiences">Experiences</a>
+                <a class="font-display text-xs font-bold uppercase tracking-widest text-white hover:text-on-primary-container transition-colors" href="#signature-trips">Trips</a>
+                <a class="font-display text-xs font-bold uppercase tracking-widest text-white hover:text-on-primary-container transition-colors" href="#sustainability">About</a>
+            </div>
+
+            <!-- Header Right Controls -->
+            <div class="flex items-center gap-4 sm:gap-6">
+                <div class="flex items-center gap-3 text-white">
+                    <button id="search-toggle-btn" title="Search" class="p-2 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center">
+                        <span class="material-symbols-outlined text-xl">search</span>
+                    </button>
+                    <button id="wishlist-btn" title="Wishlist" class="p-2 rounded-full hover:bg-white/10 transition-colors relative flex items-center justify-center">
+                        <span id="wishlist-header-icon" class="material-symbols-outlined text-xl">favorite</span>
+                        <span id="wishlist-count" class="absolute -top-1 -right-1 bg-on-primary-container text-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center opacity-0 scale-0 transition-all duration-300">0</span>
+                    </button>
+                </div>
+                
+                <a href="#signature-trips" class="hidden sm:inline-flex bg-on-primary-container text-primary font-display font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full hover:bg-white hover:text-primary transition-all transform hover:scale-105 shadow-md">
+                    Explore Trips
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors">
+                    <span class="material-symbols-outlined text-2xl">menu</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-drawer" class="fixed inset-0 z-40 bg-primary/95 backdrop-blur-xl flex flex-col justify-between p-8 transform translate-x-full transition-transform duration-300 md:hidden">
+            <div class="flex justify-between items-center pb-6 border-b border-white/10">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-on-primary-container text-2xl">landscape</span>
+                    <span class="font-display font-extrabold text-lg tracking-tight text-white">LIDTRAVEL ALPINE</span>
+                </div>
+                <button id="close-drawer-btn" class="text-white/80 hover:text-white p-2">
+                    <span class="material-symbols-outlined text-2xl">close</span>
+                </button>
+            </div>
+
+            <div class="flex flex-col gap-6 py-8 font-display text-lg font-bold uppercase tracking-widest text-white">
+                <a href="#destinations" class="drawer-link hover:text-on-primary-container transition-colors">Destinations</a>
+                <a href="#experiences" class="drawer-link text-on-primary-container">Experiences</a>
+                <a href="#signature-trips" class="drawer-link hover:text-on-primary-container transition-colors">Signature Trips</a>
+                <a href="#why-us" class="drawer-link hover:text-on-primary-container transition-colors">Why Choose Us</a>
+                <a href="#sustainability" class="drawer-link hover:text-on-primary-container transition-colors">Sustainability</a>
+            </div>
+
+            <div class="pt-6 border-t border-white/10 flex flex-col gap-4">
+                <a href="#signature-trips" class="drawer-link w-full bg-on-primary-container text-primary text-center font-display font-bold text-sm uppercase tracking-wider py-3.5 rounded-full">
+                    Explore All Trips
+                </a>
+                <p class="text-xs text-white/50 text-center uppercase tracking-widest">© 2026 Lidtravel Alpine</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- SECTION 1: Hero -->
+        <section class="relative h-screen min-h-[680px] w-full flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <div id="hero-image" class="w-full h-full bg-cover bg-center transition-transform duration-700 scale-105" 
+                     style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB7gAODRw1zR0lWOoMijhtyYZUc567s4GZ8cAsq2-Avz5-lT4dc8zHLzxPDmjrGbkfPf06-CUxR5CvuMAXXOLbi4IqfTc_vFXRNH1HqWNnIdMD_8q3By-qf5fXz3IpE5ri6FWvl9QBFePGc8_PJgFgO5_-zcgdtYcarIedL1gZ7ZKcA4eS-1--bAMcAp6_Uc0T2gxeKA-Bxa5dgY_gM1aNRKhWhG5UAfkbnbsWegpwNckUGG7CQj7RBUpIwqZIIZmeYrjJsuhqGrOr5'), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=80');">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/20 to-primary/80"></div>
+            </div>
+
+            <div class="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto pt-16">
+                <span class="inline-block font-display text-xs font-extrabold uppercase tracking-[0.25em] text-on-primary-container bg-primary/60 backdrop-blur-md px-4 py-1.5 rounded-full mb-6 border border-on-primary-container/30">
+                    Luxury Alpine Expeditions
+                </span>
+                
+                <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-7xl lg:text-[80px] text-white mb-6 leading-[1.05] tracking-tight drop-shadow-2xl">
+                    Discover Extraordinary <span class="text-on-primary-container">Adventures</span> Around The World
+                </h1>
+                
+                <p class="font-sans text-base sm:text-lg text-white/90 mb-10 max-w-2xl mx-auto drop-shadow-lg font-normal leading-relaxed">
+                    Expert-led small group adventures that create unforgettable memories across the planet's most breathtaking mountain landscapes.
+                </p>
+
+                <!-- Interactive Search Box -->
+                <form id="hero-search-form" class="glass-dark p-2.5 rounded-2xl md:rounded-full max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-2 text-left shadow-2xl">
+                    <div class="flex-1 w-full px-5 py-2.5 flex flex-col items-start border-b md:border-b-0 md:border-r border-white/15">
+                        <span class="text-[10px] uppercase font-bold font-display text-on-primary-container tracking-widest mb-0.5">Destination</span>
+                        <input id="search-destination" class="bg-transparent border-none p-0 text-white placeholder-white/50 focus:ring-0 w-full text-sm font-sans" placeholder="Where to? (e.g. Nepal, Iceland)" type="text"/>
+                    </div>
+                    <div class="flex-1 w-full px-5 py-2.5 flex flex-col items-start border-b md:border-b-0 md:border-r border-white/15">
+                        <span class="text-[10px] uppercase font-bold font-display text-on-primary-container tracking-widest mb-0.5">Adventure Type</span>
+                        <select id="search-type" class="bg-transparent border-none p-0 text-white focus:ring-0 w-full text-sm font-sans cursor-pointer appearance-none">
+                            <option class="bg-primary text-white" value="">All Adventure Types</option>
+                            <option class="bg-primary text-white" value="Hiking">Hiking &amp; Trekking</option>
+                            <option class="bg-primary text-white" value="Camping">Camping Expedition</option>
+                            <option class="bg-primary text-white" value="Wildlife">Wildlife Safari</option>
+                            <option class="bg-primary text-white" value="Cycling">Alpine Cycling</option>
+                            <option class="bg-primary text-white" value="Kayaking">Fjord Kayaking</option>
+                        </select>
+                    </div>
+                    <div class="flex-1 w-full px-5 py-2.5 flex flex-col items-start">
+                        <span class="text-[10px] uppercase font-bold font-display text-on-primary-container tracking-widest mb-0.5">Season / Dates</span>
+                        <input id="search-dates" class="bg-transparent border-none p-0 text-white placeholder-white/50 focus:ring-0 w-full text-sm font-sans" placeholder="When? (e.g. Autumn, 2026)" type="text"/>
+                    </div>
+                    <button type="submit" class="w-full md:w-auto bg-on-primary-container text-primary font-display font-bold px-8 py-3.5 rounded-full transition-all hover:bg-white hover:scale-105 active:scale-95 shadow-xl flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-lg">search</span>
+                        <span>Search Adventures</span>
+                    </button>
+                </form>
+
+                <!-- Stats Breakdown -->
+                <div class="mt-12 md:mt-16 flex flex-wrap justify-center gap-6 sm:gap-12 md:gap-16">
+                    <div class="text-white text-center">
+                        <p class="font-display font-bold text-2xl md:text-3xl text-on-primary-container mb-0">250+</p>
+                        <p class="font-display text-[10px] uppercase opacity-80 tracking-widest">Adventures</p>
+                    </div>
+                    <div class="text-white text-center">
+                        <p class="font-display font-bold text-2xl md:text-3xl text-on-primary-container mb-0">95%</p>
+                        <p class="font-display text-[10px] uppercase opacity-80 tracking-widest">Satisfaction</p>
+                    </div>
+                    <div class="text-white text-center">
+                        <p class="font-display font-bold text-2xl md:text-3xl text-on-primary-container mb-0">75</p>
+                        <p class="font-display text-[10px] uppercase opacity-80 tracking-widest">Countries</p>
+                    </div>
+                    <div class="text-white text-center">
+                        <p class="font-display font-bold text-2xl md:text-3xl text-on-primary-container mb-0">50K</p>
+                        <p class="font-display text-[10px] uppercase opacity-80 tracking-widest">Happy Travelers</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <a href="#experiences" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 hover:text-white flex flex-col items-center gap-1 animate-bounce-subtle transition-colors">
+                <span class="text-[10px] uppercase tracking-[0.25em] font-bold font-display">Scroll Down</span>
+                <span class="material-symbols-outlined text-2xl">expand_more</span>
+            </a>
+        </section>
+
+        <!-- SECTION 2: Adventure Types (Category Slider) -->
+        <section id="experiences" class="py-20 md:py-section-gap px-4 sm:px-8 md:px-margin-desktop max-w-[1440px] mx-auto overflow-hidden">
+            <div class="flex justify-between items-end mb-10">
+                <div>
+                    <p class="text-on-primary-container font-display font-bold text-xs uppercase tracking-widest mb-2">CHOOSE YOUR PATH</p>
+                    <h2 class="font-display font-bold text-3xl md:text-4xl text-primary">Explore by Interest</h2>
+                </div>
+                <div class="flex gap-3">
+                    <button id="slider-prev" aria-label="Previous Category" class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all active:scale-95 shadow-sm">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                    </button>
+                    <button id="slider-next" aria-label="Next Category" class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all active:scale-95 shadow-sm">
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="category-slider" class="flex gap-6 overflow-x-auto hide-scrollbar pb-6 snap-x scroll-smooth">
+                
+                <!-- Category 1: Hiking -->
+                <div class="min-w-[280px] sm:min-w-[320px] snap-start group cursor-pointer filter-category-btn" data-category="Hiking">
+                    <div class="relative h-[400px] rounded-2xl overflow-hidden mb-3 shadow-lg hover-lift">
+                        <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
+                             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJLnpTJQv4Bds58-JGdTxBZR-Xt72VzAcUzaRgEnQx7yrvO92NPxC4UWmuU9sa65KoXvOcxYsZVz0_4cPR__0TDlMPTnSJiJF-oeAaVua0_TpjiLh6Yx5t-jd6aB_F0h5hKvSv_J2oj9Z1T_pk9kciIaIUm1nvwx5Bh0DcSc7lt-gOZSyxVXAPi3DmiKUArL2GQyYVT9eplqq4kXI5qeN2vABYFpQ4AZelQI0kCoecm7thBobR-KP5wZ8g57bRg6tOtv7z4kJy-wND'), url('https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=800&q=80');">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 text-white flex justify-between items-end">
+                            <div>
+                                <span class="text-[10px] uppercase tracking-widest font-display text-on-primary-container font-bold">120+ Trips</span>
+                                <h3 class="font-display font-bold text-2xl leading-tight">Hiking</h3>
+                            </div>
+                            <span class="w-10 h-10 rounded-full glass flex items-center justify-center text-white group-hover:bg-on-primary-container group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: Camping -->
+                <div class="min-w-[280px] sm:min-w-[320px] snap-start group cursor-pointer filter-category-btn" data-category="Camping">
+                    <div class="relative h-[400px] rounded-2xl overflow-hidden mb-3 shadow-lg hover-lift">
+                        <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
+                             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8usKss55CoLLohKsFMN9zQFTbTiXhpFycsgyYW3m8GAB6ZvQoHPeqaYL8hMOVdBlPFjwxVMq4aARUTNr0c7ZRxdnFHQC2da4jQuWYkQq99nhTPfx4ci0_Cj-CDe0wK3Q-UxW-GnzpKusFO561GbQqpWYact6irmKTZOL4dFS5D2TALqHUtv4EXxrFxD16gIuNhl_HXti2pPoou-_Q8MhUcYQ-E3nymsU0D7z7XBRTFu_V4wRSIwxjtHaJRa60lmROI2je2fjIM-Xg'), url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=800&q=80');">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 text-white flex justify-between items-end">
+                            <div>
+                                <span class="text-[10px] uppercase tracking-widest font-display text-on-primary-container font-bold">45+ Expeditions</span>
+                                <h3 class="font-display font-bold text-2xl leading-tight">Camping</h3>
+                            </div>
+                            <span class="w-10 h-10 rounded-full glass flex items-center justify-center text-white group-hover:bg-on-primary-container group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: Wildlife -->
+                <div class="min-w-[280px] sm:min-w-[320px] snap-start group cursor-pointer filter-category-btn" data-category="Wildlife">
+                    <div class="relative h-[400px] rounded-2xl overflow-hidden mb-3 shadow-lg hover-lift">
+                        <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
+                             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAI4VtWb_eoXtY0SG70Msz94Y7XFRCVBcgFEqWTDXCEmYDmaIC-wMXTmbFO5aEjzxkeDxjHGJ2Xm2XDmLGGJTGDmyQkSuILWAyvWZU_I-H9PlSKtKaQCQDMUNSa2oEUpsp8eBTOFS1zTnG8TqoYX3fY2F48h33ZE8ZUV3jeqrG-mJxJBJ29QvKDzd_Ok9Skd-yEitNxxcSYchSCL900RTvX9K6b0vcaATW2Wm_phZCeHjMxXlFmuNeB23LjqQDEomnRK-L3UwDbyUmu'), url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80');">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 text-white flex justify-between items-end">
+                            <div>
+                                <span class="text-[10px] uppercase tracking-widest font-display text-on-primary-container font-bold">30+ Safaris</span>
+                                <h3 class="font-display font-bold text-2xl leading-tight">Wildlife</h3>
+                            </div>
+                            <span class="w-10 h-10 rounded-full glass flex items-center justify-center text-white group-hover:bg-on-primary-container group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 4: Cycling -->
+                <div class="min-w-[280px] sm:min-w-[320px] snap-start group cursor-pointer filter-category-btn" data-category="Cycling">
+                    <div class="relative h-[400px] rounded-2xl overflow-hidden mb-3 shadow-lg hover-lift">
+                        <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
+                             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJjeebEIfqROGFuJYSzMN7s3EeV1ZIKZbALK1F4ezGjEqI2I5rg16mI7eXReLpJc0t22shVIH_oK4b0exXBExE-7ngrwmvOjwL5u3xWcq4D8-fWGvgNL4ahB0LitD389-bL7HaKqIwGXsqEWWkpfYPsizdqVXgS-ZoSXjfD2cBoKQGRlz-vz2TcQbyzsH4AchkEZpBXDqOpT0jwSQzSc-SCEk6V1_8IeW1BGvYSlwzqF5FjXA3ph0OHTVTyCbUAbE4-48X3u5urpC9'), url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80');">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 text-white flex justify-between items-end">
+                            <div>
+                                <span class="text-[10px] uppercase tracking-widest font-display text-on-primary-container font-bold">25+ Routes</span>
+                                <h3 class="font-display font-bold text-2xl leading-tight">Cycling</h3>
+                            </div>
+                            <span class="w-10 h-10 rounded-full glass flex items-center justify-center text-white group-hover:bg-on-primary-container group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 5: Kayaking -->
+                <div class="min-w-[280px] sm:min-w-[320px] snap-start group cursor-pointer filter-category-btn" data-category="Kayaking">
+                    <div class="relative h-[400px] rounded-2xl overflow-hidden mb-3 shadow-lg hover-lift">
+                        <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
+                             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZABg8l9ZdBtcSlR8ByjEELkC-w1Zmr2FbTqyXYC0xEqfLCFUdkVpZ_P_i_ALYUZfeARPvAIbqCSZGqKGuOmG1MwkXxg5c-7OpeuffIoNilVAnPgtxwelBXvRgyX0peELNHF1qLakoKP4cnfF8zTv_5t-W-kTu2AOm-2cRjLV47oqDGiK1LE99GAFxoFplOUayq8jtKTANgb3c1xOSzLsOcvVi0HLl19Z7fuzyOJo_YhZd3WjNzMDptQK7XiAnAH0RgAPo2yewp6Il'), url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80');">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 text-white flex justify-between items-end">
+                            <div>
+                                <span class="text-[10px] uppercase tracking-widest font-display text-on-primary-container font-bold">18+ Waterways</span>
+                                <h3 class="font-display font-bold text-2xl leading-tight">Kayaking</h3>
+                            </div>
+                            <span class="w-10 h-10 rounded-full glass flex items-center justify-center text-white group-hover:bg-on-primary-container group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: Featured Adventures -->
+        <section id="signature-trips" class="py-20 md:py-section-gap bg-surface-container-low px-4 sm:px-8 md:px-margin-desktop">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="text-center mb-16">
+                    <p class="text-on-primary-container font-display font-bold text-xs uppercase tracking-widest mb-2">CURATED EXPERIENCES</p>
+                    <h2 class="font-display font-bold text-3xl md:text-4xl text-primary">Our Signature Trips</h2>
+                    <p class="text-on-surface-variant text-sm mt-3 max-w-xl mx-auto">Handpicked itineraries designed with private luxury lodges, expert mountaineers, and seamless logistics.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="trips-grid">
+                    
+                    <!-- Trip Card 1 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col hover-lift border border-outline-variant/30 trip-card" data-title="Volcanic Highlands Expedition" data-location="Iceland" data-category="Hiking" data-price="3499">
+                        <div class="relative h-[280px] overflow-hidden">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
+                                 style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDaUrWT9QQgtWC4rAuJDdMH4jXx6515i8BPVGIHaWevfGtKdbM1mQSfw66uBh0N_PRNyC-BMnHlRm0V4Nv2eSXGCNJNwGZwCAqlq_t8W0IK6oBvhT3ce2uRfYh5kwtYolygJ72QWOL2SuYLASup5VHXVj1BW5ywvyAzhS5W3c8oS3M79HAz4zdpYWQA58CYFr6sMRqxbJV5_og0iRgScMzY941OZXb2Uiql8Li2TYbaus-GH_dWFlaCsm6HmRjjwS1evNqjI_Q9ux-1'), url('https://images.unsplash.com/photo-1504893524553-b855bce32c67?auto=format&fit=crop&w=800&q=80');">
+                            </div>
+                            <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-[10px] font-display font-bold uppercase tracking-widest shadow-md">Iceland</div>
+                            <button class="favorite-toggle-btn absolute top-4 right-4 w-9 h-9 rounded-full glass flex items-center justify-center text-white hover:text-red-500 transition-colors shadow-md" title="Save to Wishlist" data-trip="Volcanic Highlands Expedition">
+                                <span class="material-symbols-outlined text-lg">favorite</span>
+                            </button>
+                            <div class="absolute bottom-4 right-4 glass px-3.5 py-1 rounded-full text-primary font-display font-bold text-sm shadow-md">$3,499</div>
+                        </div>
+                        <div class="p-6 sm:p-8 flex flex-col flex-1">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="font-display font-bold text-xl text-primary leading-snug">Volcanic Highlands Expedition</h3>
+                                <div class="flex items-center gap-1 text-on-primary-container shrink-0">
+                                    <span class="material-symbols-outlined text-base">schedule</span>
+                                    <span class="text-xs font-bold font-display">10 Days</span>
+                                </div>
+                            </div>
+                            <p class="text-on-surface-variant text-sm mb-6 flex-1 leading-relaxed">Traverse the otherworldly landscapes of Iceland's interior, from geothermal valleys to glacial rivers.</p>
+                            <button class="book-now-btn w-full py-3.5 border-2 border-primary text-primary font-display font-bold text-xs uppercase tracking-wider rounded-full hover:bg-primary hover:text-white transition-all transform active:scale-95 shadow-sm" data-trip="Volcanic Highlands Expedition" data-price="3499" data-days="10" data-location="Iceland">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Trip Card 2 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col hover-lift border border-outline-variant/30 trip-card" data-title="Everest Base Camp Trek" data-location="Nepal" data-category="Hiking" data-price="4250">
+                        <div class="relative h-[280px] overflow-hidden">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
+                                 style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCQC-0t5EPh9Ir5inIEZSQ4qzxPcjizMdyfuGejksPuDYuW-ohFhmMJdtS1aoV00U9M4FUByO2uHp7qUOZZX9z4bkA2gXwLOnCGqHSbTofQdin_fSR9CD0tJKJWUeYEtrDNtfwjXR_4KI2iiGqDpLTmu8YeQIVHrTCeV06V9ZtWSfcFXpyQCj0JbmpAtTp5-02ku6i50ZMyVxoIHld_UtcaG3EkokPMnrBHzD2IFQUMmlIUM8LoSOJSUtV5jhbABoIqhE-AcBm5Fx_f'), url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80');">
+                            </div>
+                            <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-[10px] font-display font-bold uppercase tracking-widest shadow-md">Nepal</div>
+                            <button class="favorite-toggle-btn absolute top-4 right-4 w-9 h-9 rounded-full glass flex items-center justify-center text-white hover:text-red-500 transition-colors shadow-md" title="Save to Wishlist" data-trip="Everest Base Camp Trek">
+                                <span class="material-symbols-outlined text-lg">favorite</span>
+                            </button>
+                            <div class="absolute bottom-4 right-4 glass px-3.5 py-1 rounded-full text-primary font-display font-bold text-sm shadow-md">$4,250</div>
+                        </div>
+                        <div class="p-6 sm:p-8 flex flex-col flex-1">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="font-display font-bold text-xl text-primary leading-snug">Everest Base Camp Trek</h3>
+                                <div class="flex items-center gap-1 text-on-primary-container shrink-0">
+                                    <span class="material-symbols-outlined text-base">schedule</span>
+                                    <span class="text-xs font-bold font-display">14 Days</span>
+                                </div>
+                            </div>
+                            <p class="text-on-surface-variant text-sm mb-6 flex-1 leading-relaxed">A legendary journey through Sherpa heartlands to the foot of the world's highest peak.</p>
+                            <button class="book-now-btn w-full py-3.5 border-2 border-primary text-primary font-display font-bold text-xs uppercase tracking-wider rounded-full hover:bg-primary hover:text-white transition-all transform active:scale-95 shadow-sm" data-trip="Everest Base Camp Trek" data-price="4250" data-days="14" data-location="Nepal">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Trip Card 3 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col hover-lift border border-outline-variant/30 trip-card" data-title="Patagonian Peaks Traverse" data-location="Patagonia" data-category="Hiking" data-price="2800">
+                        <div class="relative h-[280px] overflow-hidden">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
+                                 style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBbwLRMUzWO3EKD3nTIhM0HxMyKIwtqAgDzkHypZ36DhsYzT9lUA311UKwxixMndIg-9aflsloNOLok0cvx3CeGMXFLFMBJqjbJts04Z3VqwvYPmD6BxkItWGypIbeTMaIeMB7q1ca_LD1DJUpx4dsgifPwLaq_zzsBDWBh4oeu62DJwBxItWHBkHSh1x0zee_LFCL9tKji-sO0i_VuCgmJeUpJIsQ-HIHM_mAazDOf3iwyeW4EMxO1qEKFwYsXg1ujH18aax5ID-Vv'), url('https://images.unsplash.com/photo-1527004013197-933c4bb611b3?auto=format&fit=crop&w=800&q=80');">
+                            </div>
+                            <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-[10px] font-display font-bold uppercase tracking-widest shadow-md">Patagonia</div>
+                            <button class="favorite-toggle-btn absolute top-4 right-4 w-9 h-9 rounded-full glass flex items-center justify-center text-white hover:text-red-500 transition-colors shadow-md" title="Save to Wishlist" data-trip="Patagonian Peaks Traverse">
+                                <span class="material-symbols-outlined text-lg">favorite</span>
+                            </button>
+                            <div class="absolute bottom-4 right-4 glass px-3.5 py-1 rounded-full text-primary font-display font-bold text-sm shadow-md">$2,800</div>
+                        </div>
+                        <div class="p-6 sm:p-8 flex flex-col flex-1">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="font-display font-bold text-xl text-primary leading-snug">Patagonian Peaks Traverse</h3>
+                                <div class="flex items-center gap-1 text-on-primary-container shrink-0">
+                                    <span class="material-symbols-outlined text-base">schedule</span>
+                                    <span class="text-xs font-bold font-display">8 Days</span>
+                                </div>
+                            </div>
+                            <p class="text-on-surface-variant text-sm mb-6 flex-1 leading-relaxed">Experience the raw beauty of the edge of the world on this multi-day alpine trekking adventure.</p>
+                            <button class="book-now-btn w-full py-3.5 border-2 border-primary text-primary font-display font-bold text-xs uppercase tracking-wider rounded-full hover:bg-primary hover:text-white transition-all transform active:scale-95 shadow-sm" data-trip="Patagonian Peaks Traverse" data-price="2800" data-days="8" data-location="Patagonia">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Why Choose Us -->
+        <section id="why-us" class="py-20 md:py-section-gap px-4 sm:px-8 md:px-margin-desktop max-w-[1440px] mx-auto">
+            <div class="text-center mb-16">
+                <p class="text-on-primary-container font-display font-bold text-xs uppercase tracking-widest mb-2">THE ALPINE STANDARD</p>
+                <h2 class="font-display font-bold text-3xl md:text-4xl text-primary">Why Travel With Us</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="flex flex-col items-center p-6 rounded-2xl bg-surface hover:bg-surface-container-low transition-colors duration-300">
+                    <div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6 shadow-inner">
+                        <span class="material-symbols-outlined text-4xl">travel_explore</span>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-primary mb-2">Expert Local Guides</h3>
+                    <p class="text-on-surface-variant text-xs leading-relaxed">Passionate UIAGM certified mountain experts with deep regional knowledge leading every step.</p>
+                </div>
+
+                <div class="flex flex-col items-center p-6 rounded-2xl bg-surface hover:bg-surface-container-low transition-colors duration-300">
+                    <div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6 shadow-inner">
+                        <span class="material-symbols-outlined text-4xl">groups</span>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-primary mb-2">Small Intimate Groups</h3>
+                    <p class="text-on-surface-variant text-xs leading-relaxed">Strict maximum group size of 12 for an intimate, immersive, and highly secure travel experience.</p>
+                </div>
+
+                <div class="flex flex-col items-center p-6 rounded-2xl bg-surface hover:bg-surface-container-low transition-colors duration-300">
+                    <div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6 shadow-inner">
+                        <span class="material-symbols-outlined text-4xl">eco</span>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-primary mb-2">Sustainable Tourism</h3>
+                    <p class="text-on-surface-variant text-xs leading-relaxed">Pledge to 100% carbon-neutral expeditions and active support for local wilderness conservation.</p>
+                </div>
+
+                <div class="flex flex-col items-center p-6 rounded-2xl bg-surface hover:bg-surface-container-low transition-colors duration-300">
+                    <div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6 shadow-inner">
+                        <span class="material-symbols-outlined text-4xl">support_agent</span>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-primary mb-2">24/7 Global Support</h3>
+                    <p class="text-on-surface-variant text-xs leading-relaxed">Round-the-clock peace of mind with our dedicated international satellite communication desk.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: Destinations Bento Grid -->
+        <section id="destinations" class="py-20 md:py-section-gap px-4 sm:px-8 md:px-margin-desktop bg-primary text-white">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="text-center mb-16">
+                    <p class="text-on-primary-container font-display font-bold text-xs uppercase tracking-widest mb-2">WHERE TO NEXT?</p>
+                    <h2 class="font-display font-bold text-3xl md:text-4xl text-white">Find Your Next Destination</h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-4 h-auto md:h-[750px]">
+                    
+                    <!-- Japan -->
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer min-h-[240px] md:min-h-0 md:col-span-1 md:row-span-1">
+                        <div class="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-700" 
+                             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBcmD6divBzCHKxV6kRwLcvxW_XUtP2I0ZlEAuHpoG-6qwBA91KHZx8gpdahIKNksCfAlNlOuk5BGnjxI_o8xwoE4ZUf29zYS6o53Y_amZFJhE_y9eFepIlzaffo18eefRIezbiu_5kJAiBvZDdSbz_lQ6zZlGIZSerWspjdsK9JEG2FKvEJ0KMSCEwwiG8zsz_5W48rILj1zDa52t6xF1mEMt7AbfWPpXijkVJHQvUd-CtRkmc4eoLkX9TXt6HoKPr3Gbmk0Hh5Jv6'), url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80');">
+                        </div>
+                        <div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-colors"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-white font-display font-extrabold text-2xl tracking-widest uppercase text-shadow">Japan</span>
+                        </div>
+                    </div>
+
+                    <!-- Norway -->
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer min-h-[300px] md:min-h-0 md:col-span-1 md:row-span-2">
+                        <div class="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-700" 
+                             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCyLM8FiOaaLr8iNLdNfSRT4M5M8CXcxvv8SbNcTNLuzoDLeEKp2-aZY_XrNB0-HKgZg0tow0Ow30pD24PGrmww_5FPm7IMuYZZVRnhjVVE9hg9hUG3cstweiSHSuSqAETf4BoxJtZboJxdpUScOnTfQ1P3vsVh02R2DDndcNdpbHYQEviDk3KC4QwYNqlqhwv97xNz41NmLo6_Vd5yXmE6hVfGLXK_44jTjfv6rCP9g1fOM8lMPiKEt5GVNHqo91X6OvHdGuHVYgGv'), url('https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80');">
+                        </div>
+                        <div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-colors"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-white font-display font-extrabold text-2xl tracking-widest uppercase text-shadow">Norway</span>
+                        </div>
+                    </div>
+
+                    <!-- Peru -->
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer min-h-[260px] md:min-h-0 md:col-span-2 md:row-span-1">
+                        <div class="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-700" 
+                             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8_dS3GvCohUfdbOgIQZVN3mOmIrp1WtCgG4tvnLd-KggWEJSEi8i07LfMZAO_t_8C40iLB_G1zYER4bCbhG5SxzsrWQNuukl2n-mMGb1-UL8bg4qTJUtDztJJyVfZI1nWKCW86u_UbpNr94WyV8xxJBndtT_BMsHfg5leEDqbS-XEb2-nyQsvGwwdjLI_Lxh7jjjCmm7b-14-_c7zat1iXZvyZCFAHmDzH-AbKMtkU1Fhw1tATxgOOxuoIDUCysjDeQP7gkttZYYz'), url('https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=800&q=80');">
+                        </div>
+                        <div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-colors"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-white font-display font-extrabold text-2xl md:text-3xl tracking-widest uppercase text-shadow">Peru</span>
+                        </div>
+                    </div>
+
+                    <!-- Morocco -->
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer min-h-[240px] md:min-h-0 md:col-span-1 md:row-span-1">
+                        <div class="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-700" 
+                             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDUgfyQ8Q1nmpkCg3Y8PFLoY-2VsodXMc_VSTvx-euWCA7P3y-EeIz-fYlK3ECQ1CAf4oaOdrAtsAGN2rb9Rjx4fgNlyZGj4d_yy_5r2SQvwokuYBmoN_1mXY_U3l32CEFcGe4_Yx4Ez5GZ3DvXUWqsfPQus_nyuz4OZellARG_1DCy7GYRDmqjTi9ogNDZtnxnOzuZjaNwn50b5f1fknwikKq4xaG1edpbBD6v8U-AaRUsTlCVQaPorSk8IZxsCDrbHQIcLGbcKAsL'), url('https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=800&q=80');">
+                        </div>
+                        <div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-colors"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-white font-display font-extrabold text-2xl tracking-widest uppercase text-shadow">Morocco</span>
+                        </div>
+                    </div>
+
+                    <!-- Italy -->
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer min-h-[240px] md:min-h-0 md:col-span-1 md:row-span-1">
+                        <div class="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-700" 
+                             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB3Bm478vEYuVwZMWqsVozmuD8fqqYT8GeSMOniYOQWhxFcYph1_da1Eo_sbnzdvoFy8H_F5RUw-WfzB4gmGIHQY_hDHaZ0OADM7prY0Ls7uVv8ieDHMXP3s41-W7aiEziplxJ7PvhOWNUQndCBvYoomlkK-LRHm0bZjhVR6ZrGM1KdyjwqhHFdndJnYkTJqHyFphmO_VxC_5xTfMhVTJs87Qwu1-AEM7zDKiW9WNgNkriVt1NFcgjKtCdF-dqL1176EQkDSkaxR0F_'), url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=800&q=80');">
+                        </div>
+                        <div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-colors"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-white font-display font-extrabold text-2xl tracking-widest uppercase text-shadow">Italy</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: Sustainability -->
+        <section id="sustainability" class="py-20 md:py-section-gap px-4 sm:px-8 md:px-margin-desktop overflow-hidden">
+            <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="relative rounded-2xl overflow-hidden h-[420px] sm:h-[500px] md:h-[600px] shadow-2xl">
+                    <div class="w-full h-full bg-cover bg-center" 
+                         style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBFtHAZysv6kvxIukdj_SoMEkfwc1vTZhZhrRmYxjFt_P2mrOeeaco2sAVeVgph9--jgLWCEcBc6c4Xy9D36GFWuPKbXEeE8BDCmJXADb3dT_OqyyoGg7MzfyabFdrhpOFJCPgRj6l0oifzormTgXFNNAaTbN5dxDIvKpQ_a7k93yAOcNRoX-a1j-F3XWD7i5tlZ0ZFN0PiSPTf-6o2FIu_tVCJYQHXHRZCmX73Q5DTmymhutCLxagosZfriC1BXyMDhycYi73DdLSn'), url('https://images.unsplash.com/photo-1511497584788-876761c11969?auto=format&fit=crop&w=1200&q=80');">
+                    </div>
+                    <div class="absolute inset-0 border-[16px] md:border-[24px] border-white/10 pointer-events-none"></div>
+                </div>
+                
+                <div>
+                    <p class="text-on-primary-container font-display font-bold text-xs uppercase tracking-widest mb-3">OUR RESPONSIBILITY</p>
+                    <h2 class="font-display font-bold text-3xl md:text-5xl text-primary mb-6 leading-tight">Our Commitment to the Planet</h2>
+                    <p class="text-on-surface-variant font-sans text-base md:text-lg mb-10 leading-relaxed">
+                        We believe in travel as a transformative force for good. That's why every Lidtravel Alpine adventure is engineered with a strict commitment to zero-impact environmental preservation, carbon offsetting, and mountain community empowerment.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 sm:gap-6">
+                        <div class="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/20">
+                            <p class="text-primary font-display font-extrabold text-3xl sm:text-4xl mb-1">1.2M</p>
+                            <p class="text-on-surface-variant text-xs font-display font-bold uppercase tracking-wider">Trees Protected</p>
+                        </div>
+                        <div class="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/20">
+                            <p class="text-primary font-display font-extrabold text-3xl sm:text-4xl mb-1">450</p>
+                            <p class="text-on-surface-variant text-xs font-display font-bold uppercase tracking-wider">Local Partners</p>
+                        </div>
+                        <div class="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/20">
+                            <p class="text-primary font-display font-extrabold text-3xl sm:text-4xl mb-1">100%</p>
+                            <p class="text-on-surface-variant text-xs font-display font-bold uppercase tracking-wider">Carbon Offset</p>
+                        </div>
+                        <div class="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/20 flex items-center justify-center">
+                            <a href="#signature-trips" class="text-primary font-display font-bold text-sm hover:underline flex items-center gap-1.5">
+                                Learn More <span class="material-symbols-outlined text-base">arrow_right_alt</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: Newsletter -->
+        <section class="px-4 sm:px-8 md:px-margin-desktop mb-20 md:mb-section-gap">
+            <div class="max-w-[1440px] mx-auto relative rounded-[32px] sm:rounded-[40px] overflow-hidden p-8 sm:p-16 md:p-24 text-center shadow-2xl">
+                <div class="absolute inset-0 bg-cover bg-center" 
+                     style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtAa4UxeFpPD-o6wP1PpDgmMYczDI0xBfP4-M-XifK7ACf86cWDcTDKfE-tPzX8oQpyEUhfgVWDCAAuKeVBBe1veflkMJxlkIoBKGYOJHybFjqRPG3n8xVcGp8Jp1RfAKEUHGzAzOgOl8bSdr5hlHC2ypMBmpg9AMb5-IDp4ZYrkR2ykPE_e8DDYFqbdES78DeGjBdzj3Pl3bLWTIX8dXPO7TSe3FZsPjN18dhjp2_m5q-TQCNFB90rNDeT4CJsrHuk83zn_xlAlLo'), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80');">
+                </div>
+                <div class="absolute inset-0 bg-primary/85 backdrop-blur-sm"></div>
+                
+                <div class="relative z-10 max-w-2xl mx-auto text-white">
+                    <span class="inline-block font-display text-xs font-bold uppercase tracking-[0.2em] text-on-primary-container mb-3">STAY INSPIRED</span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-white mb-4 leading-tight">Join Our Adventure Community</h2>
+                    <p class="text-white/80 mb-8 font-sans text-base sm:text-lg">Get curated travel stories, high-altitude expedition reports, and priority early access to new trips.</p>
+                    
+                    <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
+                        <input id="newsletter-email" required class="flex-1 bg-white/10 border border-white/20 rounded-full px-6 py-4 text-white placeholder-white/50 focus:ring-2 focus:ring-on-primary-container outline-none backdrop-blur-md font-sans text-sm" placeholder="Enter your email address" type="email"/>
+                        <button type="submit" class="bg-on-primary-container text-primary font-display font-bold text-xs uppercase tracking-wider px-8 py-4 rounded-full transition-all hover:bg-white hover:scale-105 active:scale-95 shadow-xl shrink-0">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-primary text-white py-16 sm:py-24 border-t border-white/10">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-margin-desktop grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+            <div class="col-span-1 sm:col-span-2 md:col-span-1">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="material-symbols-outlined text-on-primary-container text-3xl">landscape</span>
+                    <span class="font-display font-extrabold text-xl tracking-tight">LIDTRAVEL ALPINE</span>
+                </div>
+                <p class="text-outline-variant font-sans text-xs leading-relaxed max-w-xs mb-6">
+                    © 2026 Lidtravel Alpine Co. Built for the modern explorer. Experience the world's most remote alpine destinations with world-class local experts.
+                </p>
+                <div class="flex gap-3">
+                    <a href="#" aria-label="Global Network" class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-on-primary-container hover:text-on-primary-container transition-colors">
+                        <span class="material-symbols-outlined text-base">public</span>
+                    </a>
+                    <a href="#" aria-label="Gallery" class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-on-primary-container hover:text-on-primary-container transition-colors">
+                        <span class="material-symbols-outlined text-base">photo_camera</span>
+                    </a>
+                    <a href="#" aria-label="Mail" class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-on-primary-container hover:text-on-primary-container transition-colors">
+                        <span class="material-symbols-outlined text-base">mail</span>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-white font-display font-bold text-xs uppercase tracking-widest mb-6">Explore</h4>
+                <ul class="space-y-3 font-sans text-xs text-outline-variant">
+                    <li><a class="hover:text-white transition-colors" href="#destinations">Destinations</a></li>
+                    <li><a class="hover:text-white transition-colors" href="#experiences">Experiences</a></li>
+                    <li><a class="hover:text-white transition-colors" href="#signature-trips">Signature Trips</a></li>
+                    <li><a class="hover:text-white transition-colors" href="#experiences">Solo Expeditions</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-display font-bold text-xs uppercase tracking-widest mb-6">Adventure Co.</h4>
+                <ul class="space-y-3 font-sans text-xs text-outline-variant">
+                    <li><a class="hover:text-white transition-colors" href="#why-us">About Us</a></li>
+                    <li><a class="hover:text-white transition-colors" href="#sustainability">Sustainability</a></li>
+                    <li><a class="hover:text-white transition-colors" href="#why-us">Safety Standards</a></li>
+                    <li><a class="hover:text-white transition-colors" href="#why-us">Careers</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-display font-bold text-xs uppercase tracking-widest mb-6">Support &amp; Legal</h4>
+                <ul class="space-y-3 font-sans text-xs text-outline-variant">
+                    <li><a class="hover:text-white transition-colors" href="#">Privacy Policy</a></li>
+                    <li><a class="hover:text-white transition-colors" href="#">Terms of Service</a></li>
+                    <li><a class="hover:text-white transition-colors" href="#">Safety Guidelines</a></li>
+                    <li><a class="hover:text-white transition-colors" href="#">Contact Desk</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-margin-desktop mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-outline-variant gap-4">
+            <span>Designed with extraordinary adventure in mind</span>
+            <span>All rights reserved. © 2026 Lidtravel Alpine</span>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE MODAL: Booking Modal -->
+    <div id="booking-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl transform scale-95 transition-transform duration-300 border border-outline-variant/30">
+            <button id="close-modal-btn" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700 p-1 rounded-full">
+                <span class="material-symbols-outlined text-2xl">close</span>
+            </button>
+            
+            <div class="flex items-center gap-2 text-on-primary-container mb-2">
+                <span class="material-symbols-outlined text-lg">event_available</span>
+                <span class="font-display font-bold text-xs uppercase tracking-wider">Expedition Booking</span>
+            </div>
+
+            <h3 id="modal-trip-title" class="font-display font-bold text-2xl text-primary mb-2">Trip Title</h3>
+            <p id="modal-trip-meta" class="text-xs text-on-surface-variant mb-6 font-display font-semibold">Location • 10 Days</p>
+
+            <form id="modal-booking-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-display font-bold text-gray-700 uppercase tracking-wider mb-1">Full Name</label>
+                    <input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="e.g. Alexander Vance" />
+                </div>
+                <div>
+                    <label class="block text-xs font-display font-bold text-gray-700 uppercase tracking-wider mb-1">Email Address</label>
+                    <input type="email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="alexander@example.com" />
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-display font-bold text-gray-700 uppercase tracking-wider mb-1">Travelers</label>
+                        <select id="modal-travelers" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none bg-white">
+                            <option value="1">1 Person</option>
+                            <option value="2">2 People</option>
+                            <option value="3">3 People</option>
+                            <option value="4">4 People</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-display font-bold text-gray-700 uppercase tracking-wider mb-1">Total Price</label>
+                        <div id="modal-total-price" class="px-4 py-3 rounded-xl bg-surface-container-low font-display font-bold text-primary text-base flex items-center">
+                            $3,499
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full mt-4 bg-primary text-white font-display font-bold text-xs uppercase tracking-wider py-4 rounded-full hover:bg-primary-container transition-all shadow-lg active:scale-95">
+                    Confirm &amp; Reserve Spot
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none max-w-sm"></div>
+
+    <!-- JavaScript Interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Header scroll state
+            const header = document.getElementById('top-nav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 40) {
+                    header.classList.add('bg-primary/95', 'backdrop-blur-md', 'shadow-xl', 'py-3');
+                    header.classList.remove('bg-transparent', 'py-4');
+                } else {
+                    header.classList.remove('bg-primary/95', 'backdrop-blur-md', 'shadow-xl', 'py-3');
+                    header.classList.add('bg-transparent', 'py-4');
+                }
+            });
+
+            // 2. Mobile Menu Drawer Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const closeDrawerBtn = document.getElementById('close-drawer-btn');
+            const mobileDrawer = document.getElementById('mobile-drawer');
+            const drawerLinks = document.querySelectorAll('.drawer-link');
+
+            function toggleDrawer(open) {
+                if (open) {
+                    mobileDrawer.classList.remove('translate-x-full');
+                } else {
+                    mobileDrawer.classList.add('translate-x-full');
+                }
+            }
+
+            if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', () => toggleDrawer(true));
+            if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', () => toggleDrawer(false));
+            drawerLinks.forEach(link => link.addEventListener('click', () => toggleDrawer(false)));
+
+            // 3. Category Carousel Slider Controls
+            const slider = document.getElementById('category-slider');
+            const prevBtn = document.getElementById('slider-prev');
+            const nextBtn = document.getElementById('slider-next');
+
+            if (prevBtn && slider) {
+                prevBtn.addEventListener('click', () => {
+                    slider.scrollBy({ left: -320, behavior: 'smooth' });
+                });
+            }
+            if (nextBtn && slider) {
+                nextBtn.addEventListener('click', () => {
+                    slider.scrollBy({ left: 320, behavior: 'smooth' });
+                });
+            }
+
+            // 4. Toast Notification Utility
+            function showToast(message, icon = 'check_circle') {
+                const toastContainer = document.getElementById('toast-container');
+                const toast = document.createElement('div');
+                toast.className = 'glass-dark text-white p-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-toast pointer-events-auto border border-white/20';
+                toast.innerHTML = `
+                    <span class="material-symbols-outlined text-on-primary-container text-xl">${icon}</span>
+                    <span class="text-xs font-display font-semibold flex-1">${message}</span>
+                `;
+                toastContainer.appendChild(toast);
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateY(100%) scale(0.9)';
+                    toast.style.transition = 'all 0.3s ease';
+                    setTimeout(() => toast.remove(), 300);
+                }, 3500);
+            }
+
+            // 5. Favorites / Wishlist Management
+            const wishlist = new Set();
+            const wishlistCountBadge = document.getElementById('wishlist-count');
+            const favBtns = document.querySelectorAll('.favorite-toggle-btn');
+
+            function updateWishlistBadge() {
+                const count = wishlist.size;
+                wishlistCountBadge.textContent = count;
+                if (count > 0) {
+                    wishlistCountBadge.classList.remove('opacity-0', 'scale-0');
+                    wishlistCountBadge.classList.add('opacity-100', 'scale-100');
+                } else {
+                    wishlistCountBadge.classList.add('opacity-0', 'scale-0');
+                    wishlistCountBadge.classList.remove('opacity-100', 'scale-100');
+                }
+            }
+
+            favBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const tripTitle = btn.dataset.trip;
+                    const icon = btn.querySelector('.material-symbols-outlined');
+                    
+                    if (wishlist.has(tripTitle)) {
+                        wishlist.delete(tripTitle);
+                        icon.classList.remove('filled', 'text-red-500');
+                        showToast(`Removed "${tripTitle}" from Wishlist`, 'heart_minus');
+                    } else {
+                        wishlist.add(tripTitle);
+                        icon.classList.add('filled', 'text-red-500');
+                        showToast(`Saved "${tripTitle}" to your Wishlist!`, 'favorite');
+                    }
+                    updateWishlistBadge();
+                });
+            });
+
+            // 6. Interactive Search & Category Filtering
+            const heroSearchForm = document.getElementById('hero-search-form');
+            const tripCards = document.querySelectorAll('.trip-card');
+
+            function filterTrips(queryCategory = '', queryDestination = '') {
+                let matchCount = 0;
+                tripCards.forEach(card => {
+                    const title = card.dataset.title.toLowerCase();
+                    const location = card.dataset.location.toLowerCase();
+                    const category = card.dataset.category.toLowerCase();
+
+                    const matchesCat = !queryCategory || category.includes(queryCategory.toLowerCase()) || title.includes(queryCategory.toLowerCase());
+                    const matchesDest = !queryDestination || location.includes(queryDestination.toLowerCase()) || title.includes(queryDestination.toLowerCase());
+
+                    if (matchesCat && matchesDest) {
+                        card.style.display = 'flex';
+                        matchCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                return matchCount;
+            }
+
+            if (heroSearchForm) {
+                heroSearchForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const dest = document.getElementById('search-destination').value.trim();
+                    const type = document.getElementById('search-type').value.trim();
+                    
+                    const count = filterTrips(type, dest);
+                    const tripsSection = document.getElementById('signature-trips');
+                    tripsSection.scrollIntoView({ behavior: 'smooth' });
+                    
+                    showToast(`Found ${count} adventure(s) matching your search criteria.`, 'search');
+                });
+            }
+
+            // Category card clicks filter trips
+            const categoryBtns = document.querySelectorAll('.filter-category-btn');
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const cat = btn.dataset.category;
+                    filterTrips(cat, '');
+                    const tripsSection = document.getElementById('signature-trips');
+                    tripsSection.scrollIntoView({ behavior: 'smooth' });
+                    showToast(`Filtering by interest: ${cat}`, 'filter_alt');
+                });
+            });
+
+            // 7. Booking Modal Logic
+            const bookingModal = document.getElementById('booking-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const bookNowBtns = document.querySelectorAll('.book-now-btn');
+            const modalTitle = document.getElementById('modal-trip-title');
+            const modalMeta = document.getElementById('modal-trip-meta');
+            const modalTotalPrice = document.getElementById('modal-total-price');
+            const travelersSelect = document.getElementById('modal-travelers');
+            const bookingForm = document.getElementById('modal-booking-form');
+
+            let currentBasePrice = 3499;
+
+            function openBookingModal(tripTitle, location, days, price) {
+                currentBasePrice = parseInt(price, 10);
+                modalTitle.textContent = tripTitle;
+                modalMeta.textContent = `${location} • ${days} Days Expedition`;
+                travelersSelect.value = "1";
+                updateModalPrice();
+                
+                bookingModal.classList.remove('opacity-0', 'pointer-events-none');
+                bookingModal.querySelector('> div').classList.remove('scale-95');
+                bookingModal.querySelector('> div').classList.add('scale-100');
+            }
+
+            function closeBookingModal() {
+                bookingModal.classList.add('opacity-0', 'pointer-events-none');
+                bookingModal.querySelector('> div').classList.remove('scale-100');
+                bookingModal.querySelector('> div').classList.add('scale-95');
+            }
+
+            function updateModalPrice() {
+                const count = parseInt(travelersSelect.value, 10);
+                const total = currentBasePrice * count;
+                modalTotalPrice.textContent = `$${total.toLocaleString()}`;
+            }
+
+            bookNowBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    openBookingModal(
+                        btn.dataset.trip,
+                        btn.dataset.location,
+                        btn.dataset.days,
+                        btn.dataset.price
+                    );
+                });
+            });
+
+            if (closeModalBtn) closeModalBtn.addEventListener('click', closeBookingModal);
+            if (bookingModal) {
+                bookingModal.addEventListener('click', (e) => {
+                    if (e.target === bookingModal) closeBookingModal();
+                });
+            }
+            if (travelersSelect) travelersSelect.addEventListener('change', updateModalPrice);
+
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    closeBookingModal();
+                    showToast('Expedition spot reserved! Confirmation sent to your email.', 'task_alt');
+                });
+            }
+
+            // 8. Newsletter Subscription
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    document.getElementById('newsletter-email').value = '';
+                    showToast('Welcome to the Adventure Community! Check your inbox soon.', 'mark_email_read');
+                });
+            }
+
+            // 9. Intersection Observer Scroll Fade-in
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-8');
+                    }
+                });
+            }, { threshold: 0.08 });
+
+            document.querySelectorAll('section > div').forEach(el => {
+                el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
