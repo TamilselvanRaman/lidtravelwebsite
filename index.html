@@ -56,6 +56,7 @@
                         "lg": "0.5rem",
                         "xl": "0.75rem",
                         "2xl": "24px",
+                        "3xl": "32px",
                         "full": "9999px"
                     },
                     spacing: {
@@ -88,10 +89,10 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
         .glass-dark {
-            background: rgba(0, 31, 14, 0.45);
+            background: rgba(0, 31, 14, 0.65);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.18);
         }
         .hover-lift {
             transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
@@ -129,23 +130,27 @@
         .animate-toast {
             animation: toast-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+        /* Mobile touch highlights */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
     </style>
 </head>
 
-<body class="bg-background text-on-background font-sans selection:bg-on-primary-container selection:text-primary min-h-screen flex flex-col">
+<body class="bg-background text-on-background font-sans selection:bg-on-primary-container selection:text-primary min-h-screen flex flex-col antialiased">
 
     <!-- HEADER: TopNavBar -->
     <header class="fixed top-0 w-full z-50 transition-all duration-500 bg-transparent" id="top-nav">
-        <nav class="flex justify-between items-center px-4 sm:px-8 md:px-margin-desktop py-4 max-w-[1440px] mx-auto">
+        <nav class="flex justify-between items-center px-4 sm:px-8 md:px-margin-desktop py-3.5 md:py-4 max-w-[1440px] mx-auto">
             
             <!-- Logo & Brand -->
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-full bg-on-primary-container/20 flex items-center justify-center border border-on-primary-container/40 group-hover:scale-105 transition-transform">
-                    <span class="material-symbols-outlined text-on-primary-container text-2xl">landscape</span>
+            <a href="#" class="flex items-center gap-2.5 sm:gap-3 group">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-on-primary-container/20 flex items-center justify-center border border-on-primary-container/40 group-hover:scale-105 transition-transform shrink-0">
+                    <span class="material-symbols-outlined text-on-primary-container text-xl sm:text-2xl">landscape</span>
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-display font-extrabold text-xl tracking-tight text-white leading-none">LIDTRAVEL</span>
-                    <span class="font-display font-semibold text-[10px] tracking-[0.25em] text-on-primary-container uppercase leading-tight">ALPINE</span>
+                    <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight text-white leading-none">LIDTRAVEL</span>
+                    <span class="font-display font-semibold text-[9px] sm:text-[10px] tracking-[0.25em] text-on-primary-container uppercase leading-tight">ALPINE</span>
                 </div>
             </a>
 
@@ -154,18 +159,19 @@
                 <a class="font-display text-xs font-bold uppercase tracking-widest text-white hover:text-on-primary-container transition-colors" href="#destinations">Destinations</a>
                 <a class="font-display text-xs font-bold uppercase tracking-widest text-white hover:text-on-primary-container transition-colors border-b-2 border-on-primary-container pb-0.5" href="#experiences">Experiences</a>
                 <a class="font-display text-xs font-bold uppercase tracking-widest text-white hover:text-on-primary-container transition-colors" href="#signature-trips">Trips</a>
-                <a class="font-display text-xs font-bold uppercase tracking-widest text-white hover:text-on-primary-container transition-colors" href="#sustainability">About</a>
+                <a class="font-display text-xs font-bold uppercase tracking-widest text-white hover:text-on-primary-container transition-colors" href="#why-us">About</a>
+                <a class="font-display text-xs font-bold uppercase tracking-widest text-white hover:text-on-primary-container transition-colors" href="#sustainability">Sustainability</a>
             </div>
 
             <!-- Header Right Controls -->
-            <div class="flex items-center gap-4 sm:gap-6">
-                <div class="flex items-center gap-3 text-white">
-                    <button id="search-toggle-btn" title="Search" class="p-2 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center">
+            <div class="flex items-center gap-2 sm:gap-4">
+                <div class="flex items-center gap-1.5 sm:gap-3 text-white">
+                    <button id="search-toggle-btn" title="Search" class="w-10 h-10 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center active:scale-95">
                         <span class="material-symbols-outlined text-xl">search</span>
                     </button>
-                    <button id="wishlist-btn" title="Wishlist" class="p-2 rounded-full hover:bg-white/10 transition-colors relative flex items-center justify-center">
+                    <button id="wishlist-btn" title="Wishlist" class="w-10 h-10 rounded-full hover:bg-white/10 transition-colors relative flex items-center justify-center active:scale-95">
                         <span id="wishlist-header-icon" class="material-symbols-outlined text-xl">favorite</span>
-                        <span id="wishlist-count" class="absolute -top-1 -right-1 bg-on-primary-container text-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center opacity-0 scale-0 transition-all duration-300">0</span>
+                        <span id="wishlist-count" class="absolute top-1 right-1 bg-on-primary-container text-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center opacity-0 scale-0 transition-all duration-300 shadow">0</span>
                     </button>
                 </div>
                 
@@ -174,73 +180,112 @@
                 </a>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors">
+                <button id="mobile-menu-btn" aria-label="Toggle Navigation Menu" class="md:hidden text-white w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center transition-colors active:scale-95">
                     <span class="material-symbols-outlined text-2xl">menu</span>
                 </button>
             </div>
         </nav>
 
+        <!-- Mobile Drawer Backdrop Overlay -->
+        <div id="mobile-drawer-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
+
         <!-- Mobile Drawer Navigation -->
-        <div id="mobile-drawer" class="fixed inset-0 z-40 bg-primary/95 backdrop-blur-xl flex flex-col justify-between p-8 transform translate-x-full transition-transform duration-300 md:hidden">
-            <div class="flex justify-between items-center pb-6 border-b border-white/10">
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-on-primary-container text-2xl">landscape</span>
-                    <span class="font-display font-extrabold text-lg tracking-tight text-white">LIDTRAVEL ALPINE</span>
+        <div id="mobile-drawer" class="fixed top-0 right-0 bottom-0 w-[85%] max-w-xs z-50 bg-primary/95 backdrop-blur-2xl text-white shadow-2xl flex flex-col justify-between p-6 transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto max-h-screen md:hidden border-l border-white/10">
+            <div>
+                <!-- Drawer Header -->
+                <div class="flex justify-between items-center pb-5 border-b border-white/15">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full bg-on-primary-container/20 flex items-center justify-center border border-on-primary-container/40">
+                            <span class="material-symbols-outlined text-on-primary-container text-lg">landscape</span>
+                        </div>
+                        <span class="font-display font-extrabold text-base tracking-tight text-white">LIDTRAVEL ALPINE</span>
+                    </div>
+                    <button id="close-drawer-btn" aria-label="Close Menu" class="w-10 h-10 text-white/80 hover:text-white rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
+                        <span class="material-symbols-outlined text-2xl">close</span>
+                    </button>
                 </div>
-                <button id="close-drawer-btn" class="text-white/80 hover:text-white p-2">
-                    <span class="material-symbols-outlined text-2xl">close</span>
-                </button>
+
+                <!-- Quick Drawer Search -->
+                <div class="mt-6 mb-4">
+                    <div class="relative">
+                        <input id="drawer-search-input" type="text" placeholder="Search trips, destinations..." class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 pl-10 text-xs text-white placeholder-white/50 focus:ring-1 focus:ring-on-primary-container outline-none font-sans" />
+                        <span class="material-symbols-outlined absolute left-3 top-2.5 text-white/50 text-sm">search</span>
+                    </div>
+                </div>
+
+                <!-- Drawer Links -->
+                <div class="flex flex-col gap-4 py-4 font-display text-sm font-bold uppercase tracking-widest text-white/90">
+                    <a href="#destinations" class="drawer-link flex items-center justify-between py-2 border-b border-white/5 hover:text-on-primary-container transition-colors">
+                        <span>Destinations</span>
+                        <span class="material-symbols-outlined text-xs opacity-50">chevron_right</span>
+                    </a>
+                    <a href="#experiences" class="drawer-link flex items-center justify-between py-2 border-b border-white/5 text-on-primary-container">
+                        <span>Experiences</span>
+                        <span class="material-symbols-outlined text-xs">chevron_right</span>
+                    </a>
+                    <a href="#signature-trips" class="drawer-link flex items-center justify-between py-2 border-b border-white/5 hover:text-on-primary-container transition-colors">
+                        <span>Signature Trips</span>
+                        <span class="material-symbols-outlined text-xs opacity-50">chevron_right</span>
+                    </a>
+                    <a href="#why-us" class="drawer-link flex items-center justify-between py-2 border-b border-white/5 hover:text-on-primary-container transition-colors">
+                        <span>Why Choose Us</span>
+                        <span class="material-symbols-outlined text-xs opacity-50">chevron_right</span>
+                    </a>
+                    <a href="#sustainability" class="drawer-link flex items-center justify-between py-2 border-b border-white/5 hover:text-on-primary-container transition-colors">
+                        <span>Sustainability</span>
+                        <span class="material-symbols-outlined text-xs opacity-50">chevron_right</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="flex flex-col gap-6 py-8 font-display text-lg font-bold uppercase tracking-widest text-white">
-                <a href="#destinations" class="drawer-link hover:text-on-primary-container transition-colors">Destinations</a>
-                <a href="#experiences" class="drawer-link text-on-primary-container">Experiences</a>
-                <a href="#signature-trips" class="drawer-link hover:text-on-primary-container transition-colors">Signature Trips</a>
-                <a href="#why-us" class="drawer-link hover:text-on-primary-container transition-colors">Why Choose Us</a>
-                <a href="#sustainability" class="drawer-link hover:text-on-primary-container transition-colors">Sustainability</a>
-            </div>
-
-            <div class="pt-6 border-t border-white/10 flex flex-col gap-4">
-                <a href="#signature-trips" class="drawer-link w-full bg-on-primary-container text-primary text-center font-display font-bold text-sm uppercase tracking-wider py-3.5 rounded-full">
+            <!-- Drawer Footer -->
+            <div class="pt-6 border-t border-white/15 flex flex-col gap-4 mt-auto">
+                <a href="#signature-trips" class="drawer-link w-full bg-on-primary-container text-primary text-center font-display font-bold text-xs uppercase tracking-wider py-3.5 rounded-full shadow-lg hover:bg-white transition-all">
                     Explore All Trips
                 </a>
-                <p class="text-xs text-white/50 text-center uppercase tracking-widest">© 2026 Lidtravel Alpine</p>
+                <div class="flex justify-between items-center text-xs text-white/60 pt-2">
+                    <span class="text-[10px] uppercase tracking-widest">© 2026 Lidtravel Alpine</span>
+                    <div class="flex gap-2">
+                        <span class="material-symbols-outlined text-sm">public</span>
+                        <span class="material-symbols-outlined text-sm">mail</span>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
 
     <main class="flex-grow">
         <!-- SECTION 1: Hero -->
-        <section class="relative h-screen min-h-[680px] w-full flex items-center justify-center overflow-hidden">
+        <section class="relative w-full pt-28 pb-14 sm:pt-36 sm:pb-24 overflow-hidden bg-primary min-h-[85vh] flex flex-col justify-between">
             <div class="absolute inset-0 z-0">
                 <div id="hero-image" class="w-full h-full bg-cover bg-center transition-transform duration-700 scale-105" 
                      style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB7gAODRw1zR0lWOoMijhtyYZUc567s4GZ8cAsq2-Avz5-lT4dc8zHLzxPDmjrGbkfPf06-CUxR5CvuMAXXOLbi4IqfTc_vFXRNH1HqWNnIdMD_8q3By-qf5fXz3IpE5ri6FWvl9QBFePGc8_PJgFgO5_-zcgdtYcarIedL1gZ7ZKcA4eS-1--bAMcAp6_Uc0T2gxeKA-Bxa5dgY_gM1aNRKhWhG5UAfkbnbsWegpwNckUGG7CQj7RBUpIwqZIIZmeYrjJsuhqGrOr5'), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=80');">
                 </div>
-                <div class="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/20 to-primary/80"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/40 to-primary/95"></div>
             </div>
 
-            <div class="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto pt-16">
-                <span class="inline-block font-display text-xs font-extrabold uppercase tracking-[0.25em] text-on-primary-container bg-primary/60 backdrop-blur-md px-4 py-1.5 rounded-full mb-6 border border-on-primary-container/30">
+            <div class="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto my-auto">
+                <span class="inline-block font-display text-[9px] sm:text-xs font-extrabold uppercase tracking-[0.25em] text-on-primary-container bg-primary/80 backdrop-blur-md px-3.5 py-1.5 rounded-full mb-3 sm:mb-6 border border-on-primary-container/30">
                     Luxury Alpine Expeditions
                 </span>
                 
-                <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-7xl lg:text-[80px] text-white mb-6 leading-[1.05] tracking-tight drop-shadow-2xl">
+                <h1 class="font-display font-extrabold text-2xl xs:text-3xl sm:text-5xl md:text-7xl lg:text-[80px] text-white mb-3 sm:mb-6 leading-tight sm:leading-[1.05] tracking-tight drop-shadow-2xl">
                     Discover Extraordinary <span class="text-on-primary-container">Adventures</span> Around The World
                 </h1>
                 
-                <p class="font-sans text-base sm:text-lg text-white/90 mb-10 max-w-2xl mx-auto drop-shadow-lg font-normal leading-relaxed">
+                <p class="font-sans text-xs sm:text-base md:text-lg text-white/90 mb-6 sm:mb-10 max-w-2xl mx-auto drop-shadow-lg font-normal leading-relaxed">
                     Expert-led small group adventures that create unforgettable memories across the planet's most breathtaking mountain landscapes.
                 </p>
 
                 <!-- Interactive Search Box -->
-                <form id="hero-search-form" class="glass-dark p-2.5 rounded-2xl md:rounded-full max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-2 text-left shadow-2xl">
-                    <div class="flex-1 w-full px-5 py-2.5 flex flex-col items-start border-b md:border-b-0 md:border-r border-white/15">
-                        <span class="text-[10px] uppercase font-bold font-display text-on-primary-container tracking-widest mb-0.5">Destination</span>
-                        <input id="search-destination" class="bg-transparent border-none p-0 text-white placeholder-white/50 focus:ring-0 w-full text-sm font-sans" placeholder="Where to? (e.g. Nepal, Iceland)" type="text"/>
+                <form id="hero-search-form" class="glass-dark p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl md:rounded-full max-w-4xl mx-auto flex flex-col md:flex-row items-stretch md:items-center gap-1.5 sm:gap-2 text-left shadow-2xl border border-white/20">
+                    <div class="flex-1 w-full px-3 py-1.5 sm:px-4 sm:py-2.5 flex flex-col items-start border-b md:border-b-0 md:border-r border-white/15 rounded-xl md:rounded-none bg-white/5 md:bg-transparent">
+                        <span class="text-[8px] sm:text-[10px] uppercase font-bold font-display text-on-primary-container tracking-widest mb-0.5">Destination</span>
+                        <input id="search-destination" class="bg-transparent border-none p-0 text-white placeholder-white/50 focus:ring-0 w-full text-xs sm:text-sm font-sans outline-none" placeholder="Where to? (e.g. Nepal, Iceland)" type="text"/>
                     </div>
-                    <div class="flex-1 w-full px-5 py-2.5 flex flex-col items-start border-b md:border-b-0 md:border-r border-white/15">
-                        <span class="text-[10px] uppercase font-bold font-display text-on-primary-container tracking-widest mb-0.5">Adventure Type</span>
-                        <select id="search-type" class="bg-transparent border-none p-0 text-white focus:ring-0 w-full text-sm font-sans cursor-pointer appearance-none">
+                    <div class="flex-1 w-full px-3 py-1.5 sm:px-4 sm:py-2.5 flex flex-col items-start border-b md:border-b-0 md:border-r border-white/15 rounded-xl md:rounded-none bg-white/5 md:bg-transparent">
+                        <span class="text-[8px] sm:text-[10px] uppercase font-bold font-display text-on-primary-container tracking-widest mb-0.5">Adventure Type</span>
+                        <select id="search-type" class="bg-transparent border-none p-0 text-white focus:ring-0 w-full text-xs sm:text-sm font-sans cursor-pointer appearance-none outline-none">
                             <option class="bg-primary text-white" value="">All Adventure Types</option>
                             <option class="bg-primary text-white" value="Hiking">Hiking &amp; Trekking</option>
                             <option class="bg-primary text-white" value="Camping">Camping Expedition</option>
@@ -249,153 +294,155 @@
                             <option class="bg-primary text-white" value="Kayaking">Fjord Kayaking</option>
                         </select>
                     </div>
-                    <div class="flex-1 w-full px-5 py-2.5 flex flex-col items-start">
-                        <span class="text-[10px] uppercase font-bold font-display text-on-primary-container tracking-widest mb-0.5">Season / Dates</span>
-                        <input id="search-dates" class="bg-transparent border-none p-0 text-white placeholder-white/50 focus:ring-0 w-full text-sm font-sans" placeholder="When? (e.g. Autumn, 2026)" type="text"/>
+                    <div class="flex-1 w-full px-3 py-1.5 sm:px-4 sm:py-2.5 flex flex-col items-start rounded-xl md:rounded-none bg-white/5 md:bg-transparent">
+                        <span class="text-[8px] sm:text-[10px] uppercase font-bold font-display text-on-primary-container tracking-widest mb-0.5">Season / Dates</span>
+                        <input id="search-dates" class="bg-transparent border-none p-0 text-white placeholder-white/50 focus:ring-0 w-full text-xs sm:text-sm font-sans outline-none" placeholder="When? (e.g. Autumn, 2026)" type="text"/>
                     </div>
-                    <button type="submit" class="w-full md:w-auto bg-on-primary-container text-primary font-display font-bold px-8 py-3.5 rounded-full transition-all hover:bg-white hover:scale-105 active:scale-95 shadow-xl flex items-center justify-center gap-2">
-                        <span class="material-symbols-outlined text-lg">search</span>
+                    <button type="submit" class="w-full md:w-auto bg-on-primary-container text-primary font-display font-bold px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl md:rounded-full transition-all hover:bg-white hover:scale-105 active:scale-95 shadow-xl flex items-center justify-center gap-2 text-xs sm:text-sm uppercase tracking-wider shrink-0 mt-0.5 md:mt-0">
+                        <span class="material-symbols-outlined text-base sm:text-lg">search</span>
                         <span>Search Adventures</span>
                     </button>
                 </form>
 
-                <!-- Stats Breakdown -->
-                <div class="mt-12 md:mt-16 flex flex-wrap justify-center gap-6 sm:gap-12 md:gap-16">
-                    <div class="text-white text-center">
-                        <p class="font-display font-bold text-2xl md:text-3xl text-on-primary-container mb-0">250+</p>
-                        <p class="font-display text-[10px] uppercase opacity-80 tracking-widest">Adventures</p>
+                <!-- Stats Breakdown Cards -->
+                <div class="mt-6 sm:mt-12 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-6 max-w-3xl mx-auto">
+                    <div class="glass-dark p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-white/10 text-center">
+                        <p class="font-display font-bold text-lg sm:text-3xl text-on-primary-container mb-0">250+</p>
+                        <p class="font-display text-[8px] sm:text-[10px] uppercase text-white/80 tracking-widest">Adventures</p>
                     </div>
-                    <div class="text-white text-center">
-                        <p class="font-display font-bold text-2xl md:text-3xl text-on-primary-container mb-0">95%</p>
-                        <p class="font-display text-[10px] uppercase opacity-80 tracking-widest">Satisfaction</p>
+                    <div class="glass-dark p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-white/10 text-center">
+                        <p class="font-display font-bold text-lg sm:text-3xl text-on-primary-container mb-0">95%</p>
+                        <p class="font-display text-[8px] sm:text-[10px] uppercase text-white/80 tracking-widest">Satisfaction</p>
                     </div>
-                    <div class="text-white text-center">
-                        <p class="font-display font-bold text-2xl md:text-3xl text-on-primary-container mb-0">75</p>
-                        <p class="font-display text-[10px] uppercase opacity-80 tracking-widest">Countries</p>
+                    <div class="glass-dark p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-white/10 text-center">
+                        <p class="font-display font-bold text-lg sm:text-3xl text-on-primary-container mb-0">75</p>
+                        <p class="font-display text-[8px] sm:text-[10px] uppercase text-white/80 tracking-widest">Countries</p>
                     </div>
-                    <div class="text-white text-center">
-                        <p class="font-display font-bold text-2xl md:text-3xl text-on-primary-container mb-0">50K</p>
-                        <p class="font-display text-[10px] uppercase opacity-80 tracking-widest">Happy Travelers</p>
+                    <div class="glass-dark p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-white/10 text-center">
+                        <p class="font-display font-bold text-lg sm:text-3xl text-on-primary-container mb-0">50K</p>
+                        <p class="font-display text-[8px] sm:text-[10px] uppercase text-white/80 tracking-widest">Happy Travelers</p>
                     </div>
                 </div>
-            </div>
 
-            <!-- Scroll Indicator -->
-            <a href="#experiences" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 hover:text-white flex flex-col items-center gap-1 animate-bounce-subtle transition-colors">
-                <span class="text-[10px] uppercase tracking-[0.25em] font-bold font-display">Scroll Down</span>
-                <span class="material-symbols-outlined text-2xl">expand_more</span>
-            </a>
+                <!-- Scroll Indicator -->
+                <div class="mt-6 sm:mt-8 flex justify-center">
+                    <a href="#experiences" class="inline-flex flex-col items-center gap-0.5 text-white/70 hover:text-white transition-colors animate-bounce-subtle">
+                        <span class="text-[8px] sm:text-[9px] uppercase tracking-[0.25em] font-bold font-display">Scroll Down</span>
+                        <span class="material-symbols-outlined text-lg sm:text-xl">expand_more</span>
+                    </a>
+                </div>
+            </div>
         </section>
 
         <!-- SECTION 2: Adventure Types (Category Slider) -->
-        <section id="experiences" class="py-20 md:py-section-gap px-4 sm:px-8 md:px-margin-desktop max-w-[1440px] mx-auto overflow-hidden">
-            <div class="flex justify-between items-end mb-10">
+        <section id="experiences" class="py-14 sm:py-20 md:py-section-gap px-4 sm:px-8 md:px-margin-desktop max-w-[1440px] mx-auto overflow-hidden">
+            <div class="flex justify-between items-end mb-6 sm:mb-10">
                 <div>
-                    <p class="text-on-primary-container font-display font-bold text-xs uppercase tracking-widest mb-2">CHOOSE YOUR PATH</p>
-                    <h2 class="font-display font-bold text-3xl md:text-4xl text-primary">Explore by Interest</h2>
+                    <p class="text-on-primary-container font-display font-bold text-[10px] sm:text-xs uppercase tracking-widest mb-1.5">CHOOSE YOUR PATH</p>
+                    <h2 class="font-display font-bold text-2xl sm:text-4xl text-primary">Explore by Interest</h2>
                 </div>
-                <div class="flex gap-3">
-                    <button id="slider-prev" aria-label="Previous Category" class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all active:scale-95 shadow-sm">
-                        <span class="material-symbols-outlined">arrow_back</span>
+                <div class="flex gap-2 sm:gap-3 shrink-0">
+                    <button id="slider-prev" aria-label="Previous Category" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all active:scale-95 shadow-sm">
+                        <span class="material-symbols-outlined text-lg sm:text-xl">arrow_back</span>
                     </button>
-                    <button id="slider-next" aria-label="Next Category" class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all active:scale-95 shadow-sm">
-                        <span class="material-symbols-outlined">arrow_forward</span>
+                    <button id="slider-next" aria-label="Next Category" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all active:scale-95 shadow-sm">
+                        <span class="material-symbols-outlined text-lg sm:text-xl">arrow_forward</span>
                     </button>
                 </div>
             </div>
 
-            <div id="category-slider" class="flex gap-6 overflow-x-auto hide-scrollbar pb-6 snap-x scroll-smooth">
+            <div id="category-slider" class="flex gap-4 sm:gap-6 overflow-x-auto hide-scrollbar pb-4 sm:pb-6 snap-x snap-mandatory scroll-smooth touch-pan-x">
                 
                 <!-- Category 1: Hiking -->
-                <div class="min-w-[280px] sm:min-w-[320px] snap-start group cursor-pointer filter-category-btn" data-category="Hiking">
-                    <div class="relative h-[400px] rounded-2xl overflow-hidden mb-3 shadow-lg hover-lift">
+                <div class="min-w-[240px] xs:min-w-[270px] sm:min-w-[320px] snap-start group cursor-pointer filter-category-btn" data-category="Hiking">
+                    <div class="relative h-[300px] sm:h-[400px] rounded-2xl overflow-hidden mb-3 shadow-lg hover-lift">
                         <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
                              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJLnpTJQv4Bds58-JGdTxBZR-Xt72VzAcUzaRgEnQx7yrvO92NPxC4UWmuU9sa65KoXvOcxYsZVz0_4cPR__0TDlMPTnSJiJF-oeAaVua0_TpjiLh6Yx5t-jd6aB_F0h5hKvSv_J2oj9Z1T_pk9kciIaIUm1nvwx5Bh0DcSc7lt-gOZSyxVXAPi3DmiKUArL2GQyYVT9eplqq4kXI5qeN2vABYFpQ4AZelQI0kCoecm7thBobR-KP5wZ8g57bRg6tOtv7z4kJy-wND'), url('https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=800&q=80');">
                         </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 right-6 text-white flex justify-between items-end">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+                        <div class="absolute bottom-5 left-5 right-5 text-white flex justify-between items-end">
                             <div>
-                                <span class="text-[10px] uppercase tracking-widest font-display text-on-primary-container font-bold">120+ Trips</span>
-                                <h3 class="font-display font-bold text-2xl leading-tight">Hiking</h3>
+                                <span class="text-[9px] sm:text-[10px] uppercase tracking-widest font-display text-on-primary-container font-bold">120+ Trips</span>
+                                <h3 class="font-display font-bold text-xl sm:text-2xl leading-tight">Hiking</h3>
                             </div>
-                            <span class="w-10 h-10 rounded-full glass flex items-center justify-center text-white group-hover:bg-on-primary-container group-hover:text-primary transition-colors">
-                                <span class="material-symbols-outlined">arrow_forward</span>
+                            <span class="w-9 h-9 sm:w-10 sm:h-10 rounded-full glass flex items-center justify-center text-white group-hover:bg-on-primary-container group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-base sm:text-lg">arrow_forward</span>
                             </span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Category 2: Camping -->
-                <div class="min-w-[280px] sm:min-w-[320px] snap-start group cursor-pointer filter-category-btn" data-category="Camping">
-                    <div class="relative h-[400px] rounded-2xl overflow-hidden mb-3 shadow-lg hover-lift">
+                <div class="min-w-[240px] xs:min-w-[270px] sm:min-w-[320px] snap-start group cursor-pointer filter-category-btn" data-category="Camping">
+                    <div class="relative h-[300px] sm:h-[400px] rounded-2xl overflow-hidden mb-3 shadow-lg hover-lift">
                         <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
                              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8usKss55CoLLohKsFMN9zQFTbTiXhpFycsgyYW3m8GAB6ZvQoHPeqaYL8hMOVdBlPFjwxVMq4aARUTNr0c7ZRxdnFHQC2da4jQuWYkQq99nhTPfx4ci0_Cj-CDe0wK3Q-UxW-GnzpKusFO561GbQqpWYact6irmKTZOL4dFS5D2TALqHUtv4EXxrFxD16gIuNhl_HXti2pPoou-_Q8MhUcYQ-E3nymsU0D7z7XBRTFu_V4wRSIwxjtHaJRa60lmROI2je2fjIM-Xg'), url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=800&q=80');">
                         </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 right-6 text-white flex justify-between items-end">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+                        <div class="absolute bottom-5 left-5 right-5 text-white flex justify-between items-end">
                             <div>
-                                <span class="text-[10px] uppercase tracking-widest font-display text-on-primary-container font-bold">45+ Expeditions</span>
-                                <h3 class="font-display font-bold text-2xl leading-tight">Camping</h3>
+                                <span class="text-[9px] sm:text-[10px] uppercase tracking-widest font-display text-on-primary-container font-bold">45+ Expeditions</span>
+                                <h3 class="font-display font-bold text-xl sm:text-2xl leading-tight">Camping</h3>
                             </div>
-                            <span class="w-10 h-10 rounded-full glass flex items-center justify-center text-white group-hover:bg-on-primary-container group-hover:text-primary transition-colors">
-                                <span class="material-symbols-outlined">arrow_forward</span>
+                            <span class="w-9 h-9 sm:w-10 sm:h-10 rounded-full glass flex items-center justify-center text-white group-hover:bg-on-primary-container group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-base sm:text-lg">arrow_forward</span>
                             </span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Category 3: Wildlife -->
-                <div class="min-w-[280px] sm:min-w-[320px] snap-start group cursor-pointer filter-category-btn" data-category="Wildlife">
-                    <div class="relative h-[400px] rounded-2xl overflow-hidden mb-3 shadow-lg hover-lift">
+                <div class="min-w-[240px] xs:min-w-[270px] sm:min-w-[320px] snap-start group cursor-pointer filter-category-btn" data-category="Wildlife">
+                    <div class="relative h-[300px] sm:h-[400px] rounded-2xl overflow-hidden mb-3 shadow-lg hover-lift">
                         <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
                              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAI4VtWb_eoXtY0SG70Msz94Y7XFRCVBcgFEqWTDXCEmYDmaIC-wMXTmbFO5aEjzxkeDxjHGJ2Xm2XDmLGGJTGDmyQkSuILWAyvWZU_I-H9PlSKtKaQCQDMUNSa2oEUpsp8eBTOFS1zTnG8TqoYX3fY2F48h33ZE8ZUV3jeqrG-mJxJBJ29QvKDzd_Ok9Skd-yEitNxxcSYchSCL900RTvX9K6b0vcaATW2Wm_phZCeHjMxXlFmuNeB23LjqQDEomnRK-L3UwDbyUmu'), url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80');">
                         </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 right-6 text-white flex justify-between items-end">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+                        <div class="absolute bottom-5 left-5 right-5 text-white flex justify-between items-end">
                             <div>
-                                <span class="text-[10px] uppercase tracking-widest font-display text-on-primary-container font-bold">30+ Safaris</span>
-                                <h3 class="font-display font-bold text-2xl leading-tight">Wildlife</h3>
+                                <span class="text-[9px] sm:text-[10px] uppercase tracking-widest font-display text-on-primary-container font-bold">30+ Safaris</span>
+                                <h3 class="font-display font-bold text-xl sm:text-2xl leading-tight">Wildlife</h3>
                             </div>
-                            <span class="w-10 h-10 rounded-full glass flex items-center justify-center text-white group-hover:bg-on-primary-container group-hover:text-primary transition-colors">
-                                <span class="material-symbols-outlined">arrow_forward</span>
+                            <span class="w-9 h-9 sm:w-10 sm:h-10 rounded-full glass flex items-center justify-center text-white group-hover:bg-on-primary-container group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-base sm:text-lg">arrow_forward</span>
                             </span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Category 4: Cycling -->
-                <div class="min-w-[280px] sm:min-w-[320px] snap-start group cursor-pointer filter-category-btn" data-category="Cycling">
-                    <div class="relative h-[400px] rounded-2xl overflow-hidden mb-3 shadow-lg hover-lift">
+                <div class="min-w-[240px] xs:min-w-[270px] sm:min-w-[320px] snap-start group cursor-pointer filter-category-btn" data-category="Cycling">
+                    <div class="relative h-[300px] sm:h-[400px] rounded-2xl overflow-hidden mb-3 shadow-lg hover-lift">
                         <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
                              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJjeebEIfqROGFuJYSzMN7s3EeV1ZIKZbALK1F4ezGjEqI2I5rg16mI7eXReLpJc0t22shVIH_oK4b0exXBExE-7ngrwmvOjwL5u3xWcq4D8-fWGvgNL4ahB0LitD389-bL7HaKqIwGXsqEWWkpfYPsizdqVXgS-ZoSXjfD2cBoKQGRlz-vz2TcQbyzsH4AchkEZpBXDqOpT0jwSQzSc-SCEk6V1_8IeW1BGvYSlwzqF5FjXA3ph0OHTVTyCbUAbE4-48X3u5urpC9'), url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80');">
                         </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 right-6 text-white flex justify-between items-end">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+                        <div class="absolute bottom-5 left-5 right-5 text-white flex justify-between items-end">
                             <div>
-                                <span class="text-[10px] uppercase tracking-widest font-display text-on-primary-container font-bold">25+ Routes</span>
-                                <h3 class="font-display font-bold text-2xl leading-tight">Cycling</h3>
+                                <span class="text-[9px] sm:text-[10px] uppercase tracking-widest font-display text-on-primary-container font-bold">25+ Routes</span>
+                                <h3 class="font-display font-bold text-xl sm:text-2xl leading-tight">Cycling</h3>
                             </div>
-                            <span class="w-10 h-10 rounded-full glass flex items-center justify-center text-white group-hover:bg-on-primary-container group-hover:text-primary transition-colors">
-                                <span class="material-symbols-outlined">arrow_forward</span>
+                            <span class="w-9 h-9 sm:w-10 sm:h-10 rounded-full glass flex items-center justify-center text-white group-hover:bg-on-primary-container group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-base sm:text-lg">arrow_forward</span>
                             </span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Category 5: Kayaking -->
-                <div class="min-w-[280px] sm:min-w-[320px] snap-start group cursor-pointer filter-category-btn" data-category="Kayaking">
-                    <div class="relative h-[400px] rounded-2xl overflow-hidden mb-3 shadow-lg hover-lift">
+                <div class="min-w-[240px] xs:min-w-[270px] sm:min-w-[320px] snap-start group cursor-pointer filter-category-btn" data-category="Kayaking">
+                    <div class="relative h-[300px] sm:h-[400px] rounded-2xl overflow-hidden mb-3 shadow-lg hover-lift">
                         <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
                              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZABg8l9ZdBtcSlR8ByjEELkC-w1Zmr2FbTqyXYC0xEqfLCFUdkVpZ_P_i_ALYUZfeARPvAIbqCSZGqKGuOmG1MwkXxg5c-7OpeuffIoNilVAnPgtxwelBXvRgyX0peELNHF1qLakoKP4cnfF8zTv_5t-W-kTu2AOm-2cRjLV47oqDGiK1LE99GAFxoFplOUayq8jtKTANgb3c1xOSzLsOcvVi0HLl19Z7fuzyOJo_YhZd3WjNzMDptQK7XiAnAH0RgAPo2yewp6Il'), url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80');">
                         </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 right-6 text-white flex justify-between items-end">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+                        <div class="absolute bottom-5 left-5 right-5 text-white flex justify-between items-end">
                             <div>
-                                <span class="text-[10px] uppercase tracking-widest font-display text-on-primary-container font-bold">18+ Waterways</span>
-                                <h3 class="font-display font-bold text-2xl leading-tight">Kayaking</h3>
+                                <span class="text-[9px] sm:text-[10px] uppercase tracking-widest font-display text-on-primary-container font-bold">18+ Waterways</span>
+                                <h3 class="font-display font-bold text-xl sm:text-2xl leading-tight">Kayaking</h3>
                             </div>
-                            <span class="w-10 h-10 rounded-full glass flex items-center justify-center text-white group-hover:bg-on-primary-container group-hover:text-primary transition-colors">
-                                <span class="material-symbols-outlined">arrow_forward</span>
+                            <span class="w-9 h-9 sm:w-10 sm:h-10 rounded-full glass flex items-center justify-center text-white group-hover:bg-on-primary-container group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-base sm:text-lg">arrow_forward</span>
                             </span>
                         </div>
                     </div>
@@ -405,92 +452,92 @@
         </section>
 
         <!-- SECTION 3: Featured Adventures -->
-        <section id="signature-trips" class="py-20 md:py-section-gap bg-surface-container-low px-4 sm:px-8 md:px-margin-desktop">
+        <section id="signature-trips" class="py-14 sm:py-20 md:py-section-gap bg-surface-container-low px-4 sm:px-8 md:px-margin-desktop">
             <div class="max-w-[1440px] mx-auto">
-                <div class="text-center mb-16">
-                    <p class="text-on-primary-container font-display font-bold text-xs uppercase tracking-widest mb-2">CURATED EXPERIENCES</p>
-                    <h2 class="font-display font-bold text-3xl md:text-4xl text-primary">Our Signature Trips</h2>
-                    <p class="text-on-surface-variant text-sm mt-3 max-w-xl mx-auto">Handpicked itineraries designed with private luxury lodges, expert mountaineers, and seamless logistics.</p>
+                <div class="text-center mb-10 sm:mb-16">
+                    <p class="text-on-primary-container font-display font-bold text-[10px] sm:text-xs uppercase tracking-widest mb-1.5">CURATED EXPERIENCES</p>
+                    <h2 class="font-display font-bold text-2xl sm:text-4xl text-primary">Our Signature Trips</h2>
+                    <p class="text-on-surface-variant text-xs sm:text-sm mt-2 sm:mt-3 max-w-xl mx-auto">Handpicked itineraries designed with private luxury lodges, expert mountaineers, and seamless logistics.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="trips-grid">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="trips-grid">
                     
                     <!-- Trip Card 1 -->
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col hover-lift border border-outline-variant/30 trip-card" data-title="Volcanic Highlands Expedition" data-location="Iceland" data-category="Hiking" data-price="3499">
-                        <div class="relative h-[280px] overflow-hidden">
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col hover-lift border border-outline-variant/30 trip-card" data-title="Volcanic Highlands Expedition" data-location="Iceland" data-category="Hiking" data-price="3499">
+                        <div class="relative h-[220px] sm:h-[260px] overflow-hidden">
                             <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
                                  style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDaUrWT9QQgtWC4rAuJDdMH4jXx6515i8BPVGIHaWevfGtKdbM1mQSfw66uBh0N_PRNyC-BMnHlRm0V4Nv2eSXGCNJNwGZwCAqlq_t8W0IK6oBvhT3ce2uRfYh5kwtYolygJ72QWOL2SuYLASup5VHXVj1BW5ywvyAzhS5W3c8oS3M79HAz4zdpYWQA58CYFr6sMRqxbJV5_og0iRgScMzY941OZXb2Uiql8Li2TYbaus-GH_dWFlaCsm6HmRjjwS1evNqjI_Q9ux-1'), url('https://images.unsplash.com/photo-1504893524553-b855bce32c67?auto=format&fit=crop&w=800&q=80');">
                             </div>
                             <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-[10px] font-display font-bold uppercase tracking-widest shadow-md">Iceland</div>
-                            <button class="favorite-toggle-btn absolute top-4 right-4 w-9 h-9 rounded-full glass flex items-center justify-center text-white hover:text-red-500 transition-colors shadow-md" title="Save to Wishlist" data-trip="Volcanic Highlands Expedition">
+                            <button class="favorite-toggle-btn absolute top-4 right-4 w-9 h-9 rounded-full glass flex items-center justify-center text-white hover:text-red-500 transition-colors shadow-md active:scale-90" title="Save to Wishlist" data-trip="Volcanic Highlands Expedition">
                                 <span class="material-symbols-outlined text-lg">favorite</span>
                             </button>
-                            <div class="absolute bottom-4 right-4 glass px-3.5 py-1 rounded-full text-primary font-display font-bold text-sm shadow-md">$3,499</div>
+                            <div class="absolute bottom-4 right-4 glass px-3.5 py-1 rounded-full text-primary font-display font-bold text-xs sm:text-sm shadow-md">$3,499</div>
                         </div>
-                        <div class="p-6 sm:p-8 flex flex-col flex-1">
-                            <div class="flex justify-between items-start mb-3">
-                                <h3 class="font-display font-bold text-xl text-primary leading-snug">Volcanic Highlands Expedition</h3>
+                        <div class="p-5 sm:p-7 flex flex-col flex-1">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 mb-2 sm:mb-3">
+                                <h3 class="font-display font-bold text-lg sm:text-xl text-primary leading-snug">Volcanic Highlands Expedition</h3>
                                 <div class="flex items-center gap-1 text-on-primary-container shrink-0">
-                                    <span class="material-symbols-outlined text-base">schedule</span>
-                                    <span class="text-xs font-bold font-display">10 Days</span>
+                                    <span class="material-symbols-outlined text-sm sm:text-base">schedule</span>
+                                    <span class="text-[11px] sm:text-xs font-bold font-display">10 Days</span>
                                 </div>
                             </div>
-                            <p class="text-on-surface-variant text-sm mb-6 flex-1 leading-relaxed">Traverse the otherworldly landscapes of Iceland's interior, from geothermal valleys to glacial rivers.</p>
-                            <button class="book-now-btn w-full py-3.5 border-2 border-primary text-primary font-display font-bold text-xs uppercase tracking-wider rounded-full hover:bg-primary hover:text-white transition-all transform active:scale-95 shadow-sm" data-trip="Volcanic Highlands Expedition" data-price="3499" data-days="10" data-location="Iceland">
+                            <p class="text-on-surface-variant text-xs sm:text-sm mb-5 flex-1 leading-relaxed">Traverse the otherworldly landscapes of Iceland's interior, from geothermal valleys to glacial rivers.</p>
+                            <button class="book-now-btn w-full py-3 border-2 border-primary text-primary font-display font-bold text-xs uppercase tracking-wider rounded-full hover:bg-primary hover:text-white transition-all transform active:scale-95 shadow-sm min-h-[44px]" data-trip="Volcanic Highlands Expedition" data-price="3499" data-days="10" data-location="Iceland">
                                 Book Now
                             </button>
                         </div>
                     </div>
 
                     <!-- Trip Card 2 -->
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col hover-lift border border-outline-variant/30 trip-card" data-title="Everest Base Camp Trek" data-location="Nepal" data-category="Hiking" data-price="4250">
-                        <div class="relative h-[280px] overflow-hidden">
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col hover-lift border border-outline-variant/30 trip-card" data-title="Everest Base Camp Trek" data-location="Nepal" data-category="Hiking" data-price="4250">
+                        <div class="relative h-[220px] sm:h-[260px] overflow-hidden">
                             <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
                                  style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCQC-0t5EPh9Ir5inIEZSQ4qzxPcjizMdyfuGejksPuDYuW-ohFhmMJdtS1aoV00U9M4FUByO2uHp7qUOZZX9z4bkA2gXwLOnCGqHSbTofQdin_fSR9CD0tJKJWUeYEtrDNtfwjXR_4KI2iiGqDpLTmu8YeQIVHrTCeV06V9ZtWSfcFXpyQCj0JbmpAtTp5-02ku6i50ZMyVxoIHld_UtcaG3EkokPMnrBHzD2IFQUMmlIUM8LoSOJSUtV5jhbABoIqhE-AcBm5Fx_f'), url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80');">
                             </div>
                             <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-[10px] font-display font-bold uppercase tracking-widest shadow-md">Nepal</div>
-                            <button class="favorite-toggle-btn absolute top-4 right-4 w-9 h-9 rounded-full glass flex items-center justify-center text-white hover:text-red-500 transition-colors shadow-md" title="Save to Wishlist" data-trip="Everest Base Camp Trek">
+                            <button class="favorite-toggle-btn absolute top-4 right-4 w-9 h-9 rounded-full glass flex items-center justify-center text-white hover:text-red-500 transition-colors shadow-md active:scale-90" title="Save to Wishlist" data-trip="Everest Base Camp Trek">
                                 <span class="material-symbols-outlined text-lg">favorite</span>
                             </button>
-                            <div class="absolute bottom-4 right-4 glass px-3.5 py-1 rounded-full text-primary font-display font-bold text-sm shadow-md">$4,250</div>
+                            <div class="absolute bottom-4 right-4 glass px-3.5 py-1 rounded-full text-primary font-display font-bold text-xs sm:text-sm shadow-md">$4,250</div>
                         </div>
-                        <div class="p-6 sm:p-8 flex flex-col flex-1">
-                            <div class="flex justify-between items-start mb-3">
-                                <h3 class="font-display font-bold text-xl text-primary leading-snug">Everest Base Camp Trek</h3>
+                        <div class="p-5 sm:p-7 flex flex-col flex-1">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 mb-2 sm:mb-3">
+                                <h3 class="font-display font-bold text-lg sm:text-xl text-primary leading-snug">Everest Base Camp Trek</h3>
                                 <div class="flex items-center gap-1 text-on-primary-container shrink-0">
-                                    <span class="material-symbols-outlined text-base">schedule</span>
-                                    <span class="text-xs font-bold font-display">14 Days</span>
+                                    <span class="material-symbols-outlined text-sm sm:text-base">schedule</span>
+                                    <span class="text-[11px] sm:text-xs font-bold font-display">14 Days</span>
                                 </div>
                             </div>
-                            <p class="text-on-surface-variant text-sm mb-6 flex-1 leading-relaxed">A legendary journey through Sherpa heartlands to the foot of the world's highest peak.</p>
-                            <button class="book-now-btn w-full py-3.5 border-2 border-primary text-primary font-display font-bold text-xs uppercase tracking-wider rounded-full hover:bg-primary hover:text-white transition-all transform active:scale-95 shadow-sm" data-trip="Everest Base Camp Trek" data-price="4250" data-days="14" data-location="Nepal">
+                            <p class="text-on-surface-variant text-xs sm:text-sm mb-5 flex-1 leading-relaxed">A legendary journey through Sherpa heartlands to the foot of the world's highest peak.</p>
+                            <button class="book-now-btn w-full py-3 border-2 border-primary text-primary font-display font-bold text-xs uppercase tracking-wider rounded-full hover:bg-primary hover:text-white transition-all transform active:scale-95 shadow-sm min-h-[44px]" data-trip="Everest Base Camp Trek" data-price="4250" data-days="14" data-location="Nepal">
                                 Book Now
                             </button>
                         </div>
                     </div>
 
                     <!-- Trip Card 3 -->
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col hover-lift border border-outline-variant/30 trip-card" data-title="Patagonian Peaks Traverse" data-location="Patagonia" data-category="Hiking" data-price="2800">
-                        <div class="relative h-[280px] overflow-hidden">
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col hover-lift border border-outline-variant/30 trip-card" data-title="Patagonian Peaks Traverse" data-location="Patagonia" data-category="Hiking" data-price="2800">
+                        <div class="relative h-[220px] sm:h-[260px] overflow-hidden">
                             <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
                                  style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBbwLRMUzWO3EKD3nTIhM0HxMyKIwtqAgDzkHypZ36DhsYzT9lUA311UKwxixMndIg-9aflsloNOLok0cvx3CeGMXFLFMBJqjbJts04Z3VqwvYPmD6BxkItWGypIbeTMaIeMB7q1ca_LD1DJUpx4dsgifPwLaq_zzsBDWBh4oeu62DJwBxItWHBkHSh1x0zee_LFCL9tKji-sO0i_VuCgmJeUpJIsQ-HIHM_mAazDOf3iwyeW4EMxO1qEKFwYsXg1ujH18aax5ID-Vv'), url('https://images.unsplash.com/photo-1527004013197-933c4bb611b3?auto=format&fit=crop&w=800&q=80');">
                             </div>
                             <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-[10px] font-display font-bold uppercase tracking-widest shadow-md">Patagonia</div>
-                            <button class="favorite-toggle-btn absolute top-4 right-4 w-9 h-9 rounded-full glass flex items-center justify-center text-white hover:text-red-500 transition-colors shadow-md" title="Save to Wishlist" data-trip="Patagonian Peaks Traverse">
+                            <button class="favorite-toggle-btn absolute top-4 right-4 w-9 h-9 rounded-full glass flex items-center justify-center text-white hover:text-red-500 transition-colors shadow-md active:scale-90" title="Save to Wishlist" data-trip="Patagonian Peaks Traverse">
                                 <span class="material-symbols-outlined text-lg">favorite</span>
                             </button>
-                            <div class="absolute bottom-4 right-4 glass px-3.5 py-1 rounded-full text-primary font-display font-bold text-sm shadow-md">$2,800</div>
+                            <div class="absolute bottom-4 right-4 glass px-3.5 py-1 rounded-full text-primary font-display font-bold text-xs sm:text-sm shadow-md">$2,800</div>
                         </div>
-                        <div class="p-6 sm:p-8 flex flex-col flex-1">
-                            <div class="flex justify-between items-start mb-3">
-                                <h3 class="font-display font-bold text-xl text-primary leading-snug">Patagonian Peaks Traverse</h3>
+                        <div class="p-5 sm:p-7 flex flex-col flex-1">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 mb-2 sm:mb-3">
+                                <h3 class="font-display font-bold text-lg sm:text-xl text-primary leading-snug">Patagonian Peaks Traverse</h3>
                                 <div class="flex items-center gap-1 text-on-primary-container shrink-0">
-                                    <span class="material-symbols-outlined text-base">schedule</span>
-                                    <span class="text-xs font-bold font-display">8 Days</span>
+                                    <span class="material-symbols-outlined text-sm sm:text-base">schedule</span>
+                                    <span class="text-[11px] sm:text-xs font-bold font-display">8 Days</span>
                                 </div>
                             </div>
-                            <p class="text-on-surface-variant text-sm mb-6 flex-1 leading-relaxed">Experience the raw beauty of the edge of the world on this multi-day alpine trekking adventure.</p>
-                            <button class="book-now-btn w-full py-3.5 border-2 border-primary text-primary font-display font-bold text-xs uppercase tracking-wider rounded-full hover:bg-primary hover:text-white transition-all transform active:scale-95 shadow-sm" data-trip="Patagonian Peaks Traverse" data-price="2800" data-days="8" data-location="Patagonia">
+                            <p class="text-on-surface-variant text-xs sm:text-sm mb-5 flex-1 leading-relaxed">Experience the raw beauty of the edge of the world on this multi-day alpine trekking adventure.</p>
+                            <button class="book-now-btn w-full py-3 border-2 border-primary text-primary font-display font-bold text-xs uppercase tracking-wider rounded-full hover:bg-primary hover:text-white transition-all transform active:scale-95 shadow-sm min-h-[44px]" data-trip="Patagonian Peaks Traverse" data-price="2800" data-days="8" data-location="Patagonia">
                                 Book Now
                             </button>
                         </div>
@@ -501,109 +548,109 @@
         </section>
 
         <!-- SECTION 4: Why Choose Us -->
-        <section id="why-us" class="py-20 md:py-section-gap px-4 sm:px-8 md:px-margin-desktop max-w-[1440px] mx-auto">
-            <div class="text-center mb-16">
-                <p class="text-on-primary-container font-display font-bold text-xs uppercase tracking-widest mb-2">THE ALPINE STANDARD</p>
-                <h2 class="font-display font-bold text-3xl md:text-4xl text-primary">Why Travel With Us</h2>
+        <section id="why-us" class="py-14 sm:py-20 md:py-section-gap px-4 sm:px-8 md:px-margin-desktop max-w-[1440px] mx-auto">
+            <div class="text-center mb-10 sm:mb-16">
+                <p class="text-on-primary-container font-display font-bold text-[10px] sm:text-xs uppercase tracking-widest mb-1.5">THE ALPINE STANDARD</p>
+                <h2 class="font-display font-bold text-2xl sm:text-4xl text-primary">Why Travel With Us</h2>
             </div>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div class="flex flex-col items-center p-6 rounded-2xl bg-surface hover:bg-surface-container-low transition-colors duration-300">
-                    <div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6 shadow-inner">
-                        <span class="material-symbols-outlined text-4xl">travel_explore</span>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 md:gap-8 text-center">
+                <div class="flex flex-col items-center p-4 sm:p-6 rounded-2xl bg-surface hover:bg-surface-container-low border border-outline-variant/20 transition-all duration-300">
+                    <div class="w-12 h-12 sm:w-20 sm:h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-3 sm:mb-6 shadow-inner">
+                        <span class="material-symbols-outlined text-2xl sm:text-4xl">travel_explore</span>
                     </div>
-                    <h3 class="font-display font-bold text-lg text-primary mb-2">Expert Local Guides</h3>
-                    <p class="text-on-surface-variant text-xs leading-relaxed">Passionate UIAGM certified mountain experts with deep regional knowledge leading every step.</p>
+                    <h3 class="font-display font-bold text-sm sm:text-lg text-primary mb-1 sm:mb-2">Expert Local Guides</h3>
+                    <p class="text-on-surface-variant text-[11px] sm:text-xs leading-relaxed">Passionate UIAGM certified mountain experts leading every step.</p>
                 </div>
 
-                <div class="flex flex-col items-center p-6 rounded-2xl bg-surface hover:bg-surface-container-low transition-colors duration-300">
-                    <div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6 shadow-inner">
-                        <span class="material-symbols-outlined text-4xl">groups</span>
+                <div class="flex flex-col items-center p-4 sm:p-6 rounded-2xl bg-surface hover:bg-surface-container-low border border-outline-variant/20 transition-all duration-300">
+                    <div class="w-12 h-12 sm:w-20 sm:h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-3 sm:mb-6 shadow-inner">
+                        <span class="material-symbols-outlined text-2xl sm:text-4xl">groups</span>
                     </div>
-                    <h3 class="font-display font-bold text-lg text-primary mb-2">Small Intimate Groups</h3>
-                    <p class="text-on-surface-variant text-xs leading-relaxed">Strict maximum group size of 12 for an intimate, immersive, and highly secure travel experience.</p>
+                    <h3 class="font-display font-bold text-sm sm:text-lg text-primary mb-1 sm:mb-2">Small Intimate Groups</h3>
+                    <p class="text-on-surface-variant text-[11px] sm:text-xs leading-relaxed">Strict maximum group size of 12 for an immersive travel experience.</p>
                 </div>
 
-                <div class="flex flex-col items-center p-6 rounded-2xl bg-surface hover:bg-surface-container-low transition-colors duration-300">
-                    <div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6 shadow-inner">
-                        <span class="material-symbols-outlined text-4xl">eco</span>
+                <div class="flex flex-col items-center p-4 sm:p-6 rounded-2xl bg-surface hover:bg-surface-container-low border border-outline-variant/20 transition-all duration-300">
+                    <div class="w-12 h-12 sm:w-20 sm:h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-3 sm:mb-6 shadow-inner">
+                        <span class="material-symbols-outlined text-2xl sm:text-4xl">eco</span>
                     </div>
-                    <h3 class="font-display font-bold text-lg text-primary mb-2">Sustainable Tourism</h3>
-                    <p class="text-on-surface-variant text-xs leading-relaxed">Pledge to 100% carbon-neutral expeditions and active support for local wilderness conservation.</p>
+                    <h3 class="font-display font-bold text-sm sm:text-lg text-primary mb-1 sm:mb-2">Sustainable Tourism</h3>
+                    <p class="text-on-surface-variant text-[11px] sm:text-xs leading-relaxed">100% carbon-neutral expeditions & wilderness conservation support.</p>
                 </div>
 
-                <div class="flex flex-col items-center p-6 rounded-2xl bg-surface hover:bg-surface-container-low transition-colors duration-300">
-                    <div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6 shadow-inner">
-                        <span class="material-symbols-outlined text-4xl">support_agent</span>
+                <div class="flex flex-col items-center p-4 sm:p-6 rounded-2xl bg-surface hover:bg-surface-container-low border border-outline-variant/20 transition-all duration-300">
+                    <div class="w-12 h-12 sm:w-20 sm:h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-3 sm:mb-6 shadow-inner">
+                        <span class="material-symbols-outlined text-2xl sm:text-4xl">support_agent</span>
                     </div>
-                    <h3 class="font-display font-bold text-lg text-primary mb-2">24/7 Global Support</h3>
-                    <p class="text-on-surface-variant text-xs leading-relaxed">Round-the-clock peace of mind with our dedicated international satellite communication desk.</p>
+                    <h3 class="font-display font-bold text-sm sm:text-lg text-primary mb-1 sm:mb-2">24/7 Global Support</h3>
+                    <p class="text-on-surface-variant text-[11px] sm:text-xs leading-relaxed">Round-the-clock peace of mind with our satellite comms desk.</p>
                 </div>
             </div>
         </section>
 
         <!-- SECTION 5: Destinations Bento Grid -->
-        <section id="destinations" class="py-20 md:py-section-gap px-4 sm:px-8 md:px-margin-desktop bg-primary text-white">
+        <section id="destinations" class="py-14 sm:py-20 md:py-section-gap px-4 sm:px-8 md:px-margin-desktop bg-primary text-white">
             <div class="max-w-[1440px] mx-auto">
-                <div class="text-center mb-16">
-                    <p class="text-on-primary-container font-display font-bold text-xs uppercase tracking-widest mb-2">WHERE TO NEXT?</p>
-                    <h2 class="font-display font-bold text-3xl md:text-4xl text-white">Find Your Next Destination</h2>
+                <div class="text-center mb-10 sm:mb-16">
+                    <p class="text-on-primary-container font-display font-bold text-[10px] sm:text-xs uppercase tracking-widest mb-1.5">WHERE TO NEXT?</p>
+                    <h2 class="font-display font-bold text-2xl sm:text-4xl text-white">Find Your Next Destination</h2>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-4 h-auto md:h-[750px]">
+                <div class="grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-3 sm:gap-4 h-auto md:h-[750px]">
                     
                     <!-- Japan -->
-                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer min-h-[240px] md:min-h-0 md:col-span-1 md:row-span-1">
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer min-h-[170px] sm:min-h-[220px] md:min-h-0 col-span-1 md:col-span-1 md:row-span-1">
                         <div class="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-700" 
                              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBcmD6divBzCHKxV6kRwLcvxW_XUtP2I0ZlEAuHpoG-6qwBA91KHZx8gpdahIKNksCfAlNlOuk5BGnjxI_o8xwoE4ZUf29zYS6o53Y_amZFJhE_y9eFepIlzaffo18eefRIezbiu_5kJAiBvZDdSbz_lQ6zZlGIZSerWspjdsK9JEG2FKvEJ0KMSCEwwiG8zsz_5W48rILj1zDa52t6xF1mEMt7AbfWPpXijkVJHQvUd-CtRkmc4eoLkX9TXt6HoKPr3Gbmk0Hh5Jv6'), url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80');">
                         </div>
                         <div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-colors"></div>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white font-display font-extrabold text-2xl tracking-widest uppercase text-shadow">Japan</span>
+                            <span class="text-white font-display font-extrabold text-lg sm:text-2xl tracking-widest uppercase text-shadow">Japan</span>
                         </div>
                     </div>
 
                     <!-- Norway -->
-                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer min-h-[300px] md:min-h-0 md:col-span-1 md:row-span-2">
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer min-h-[170px] sm:min-h-[220px] md:min-h-0 col-span-1 md:col-span-1 md:row-span-2">
                         <div class="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-700" 
                              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCyLM8FiOaaLr8iNLdNfSRT4M5M8CXcxvv8SbNcTNLuzoDLeEKp2-aZY_XrNB0-HKgZg0tow0Ow30pD24PGrmww_5FPm7IMuYZZVRnhjVVE9hg9hUG3cstweiSHSuSqAETf4BoxJtZboJxdpUScOnTfQ1P3vsVh02R2DDndcNdpbHYQEviDk3KC4QwYNqlqhwv97xNz41NmLo6_Vd5yXmE6hVfGLXK_44jTjfv6rCP9g1fOM8lMPiKEt5GVNHqo91X6OvHdGuHVYgGv'), url('https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80');">
                         </div>
                         <div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-colors"></div>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white font-display font-extrabold text-2xl tracking-widest uppercase text-shadow">Norway</span>
+                            <span class="text-white font-display font-extrabold text-lg sm:text-2xl tracking-widest uppercase text-shadow">Norway</span>
                         </div>
                     </div>
 
                     <!-- Peru -->
-                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer min-h-[260px] md:min-h-0 md:col-span-2 md:row-span-1">
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer min-h-[170px] sm:min-h-[220px] md:min-h-0 col-span-2 md:col-span-2 md:row-span-1">
                         <div class="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-700" 
                              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8_dS3GvCohUfdbOgIQZVN3mOmIrp1WtCgG4tvnLd-KggWEJSEi8i07LfMZAO_t_8C40iLB_G1zYER4bCbhG5SxzsrWQNuukl2n-mMGb1-UL8bg4qTJUtDztJJyVfZI1nWKCW86u_UbpNr94WyV8xxJBndtT_BMsHfg5leEDqbS-XEb2-nyQsvGwwdjLI_Lxh7jjjCmm7b-14-_c7zat1iXZvyZCFAHmDzH-AbKMtkU1Fhw1tATxgOOxuoIDUCysjDeQP7gkttZYYz'), url('https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=800&q=80');">
                         </div>
                         <div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-colors"></div>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white font-display font-extrabold text-2xl md:text-3xl tracking-widest uppercase text-shadow">Peru</span>
+                            <span class="text-white font-display font-extrabold text-xl sm:text-3xl tracking-widest uppercase text-shadow">Peru</span>
                         </div>
                     </div>
 
                     <!-- Morocco -->
-                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer min-h-[240px] md:min-h-0 md:col-span-1 md:row-span-1">
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer min-h-[170px] sm:min-h-[220px] md:min-h-0 col-span-1 md:col-span-1 md:row-span-1">
                         <div class="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-700" 
                              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDUgfyQ8Q1nmpkCg3Y8PFLoY-2VsodXMc_VSTvx-euWCA7P3y-EeIz-fYlK3ECQ1CAf4oaOdrAtsAGN2rb9Rjx4fgNlyZGj4d_yy_5r2SQvwokuYBmoN_1mXY_U3l32CEFcGe4_Yx4Ez5GZ3DvXUWqsfPQus_nyuz4OZellARG_1DCy7GYRDmqjTi9ogNDZtnxnOzuZjaNwn50b5f1fknwikKq4xaG1edpbBD6v8U-AaRUsTlCVQaPorSk8IZxsCDrbHQIcLGbcKAsL'), url('https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=800&q=80');">
                         </div>
                         <div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-colors"></div>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white font-display font-extrabold text-2xl tracking-widest uppercase text-shadow">Morocco</span>
+                            <span class="text-white font-display font-extrabold text-lg sm:text-2xl tracking-widest uppercase text-shadow">Morocco</span>
                         </div>
                     </div>
 
                     <!-- Italy -->
-                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer min-h-[240px] md:min-h-0 md:col-span-1 md:row-span-1">
+                    <div class="relative rounded-2xl overflow-hidden group cursor-pointer min-h-[170px] sm:min-h-[220px] md:min-h-0 col-span-1 md:col-span-1 md:row-span-1">
                         <div class="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-700" 
                              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB3Bm478vEYuVwZMWqsVozmuD8fqqYT8GeSMOniYOQWhxFcYph1_da1Eo_sbnzdvoFy8H_F5RUw-WfzB4gmGIHQY_hDHaZ0OADM7prY0Ls7uVv8ieDHMXP3s41-W7aiEziplxJ7PvhOWNUQndCBvYoomlkK-LRHm0bZjhVR6ZrGM1KdyjwqhHFdndJnYkTJqHyFphmO_VxC_5xTfMhVTJs87Qwu1-AEM7zDKiW9WNgNkriVt1NFcgjKtCdF-dqL1176EQkDSkaxR0F_'), url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=800&q=80');">
                         </div>
                         <div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-colors"></div>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white font-display font-extrabold text-2xl tracking-widest uppercase text-shadow">Italy</span>
+                            <span class="text-white font-display font-extrabold text-lg sm:text-2xl tracking-widest uppercase text-shadow">Italy</span>
                         </div>
                     </div>
 
@@ -612,38 +659,38 @@
         </section>
 
         <!-- SECTION 6: Sustainability -->
-        <section id="sustainability" class="py-20 md:py-section-gap px-4 sm:px-8 md:px-margin-desktop overflow-hidden">
-            <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
-                <div class="relative rounded-2xl overflow-hidden h-[420px] sm:h-[500px] md:h-[600px] shadow-2xl">
+        <section id="sustainability" class="py-14 sm:py-20 md:py-section-gap px-4 sm:px-8 md:px-margin-desktop overflow-hidden">
+            <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
+                <div class="relative rounded-3xl overflow-hidden h-[300px] sm:h-[450px] md:h-[600px] shadow-2xl">
                     <div class="w-full h-full bg-cover bg-center" 
                          style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBFtHAZysv6kvxIukdj_SoMEkfwc1vTZhZhrRmYxjFt_P2mrOeeaco2sAVeVgph9--jgLWCEcBc6c4Xy9D36GFWuPKbXEeE8BDCmJXADb3dT_OqyyoGg7MzfyabFdrhpOFJCPgRj6l0oifzormTgXFNNAaTbN5dxDIvKpQ_a7k93yAOcNRoX-a1j-F3XWD7i5tlZ0ZFN0PiSPTf-6o2FIu_tVCJYQHXHRZCmX73Q5DTmymhutCLxagosZfriC1BXyMDhycYi73DdLSn'), url('https://images.unsplash.com/photo-1511497584788-876761c11969?auto=format&fit=crop&w=1200&q=80');">
                     </div>
-                    <div class="absolute inset-0 border-[16px] md:border-[24px] border-white/10 pointer-events-none"></div>
+                    <div class="absolute inset-0 border-[12px] sm:border-[24px] border-white/10 pointer-events-none"></div>
                 </div>
                 
                 <div>
-                    <p class="text-on-primary-container font-display font-bold text-xs uppercase tracking-widest mb-3">OUR RESPONSIBILITY</p>
-                    <h2 class="font-display font-bold text-3xl md:text-5xl text-primary mb-6 leading-tight">Our Commitment to the Planet</h2>
-                    <p class="text-on-surface-variant font-sans text-base md:text-lg mb-10 leading-relaxed">
+                    <p class="text-on-primary-container font-display font-bold text-[10px] sm:text-xs uppercase tracking-widest mb-2">OUR RESPONSIBILITY</p>
+                    <h2 class="font-display font-bold text-2xl sm:text-4xl md:text-5xl text-primary mb-4 sm:mb-6 leading-tight">Our Commitment to the Planet</h2>
+                    <p class="text-on-surface-variant font-sans text-xs sm:text-base md:text-lg mb-8 sm:mb-10 leading-relaxed">
                         We believe in travel as a transformative force for good. That's why every Lidtravel Alpine adventure is engineered with a strict commitment to zero-impact environmental preservation, carbon offsetting, and mountain community empowerment.
                     </p>
                     
-                    <div class="grid grid-cols-2 gap-4 sm:gap-6">
-                        <div class="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/20">
-                            <p class="text-primary font-display font-extrabold text-3xl sm:text-4xl mb-1">1.2M</p>
-                            <p class="text-on-surface-variant text-xs font-display font-bold uppercase tracking-wider">Trees Protected</p>
+                    <div class="grid grid-cols-2 gap-3 sm:gap-6">
+                        <div class="bg-surface-container-low p-4 sm:p-6 rounded-2xl border border-outline-variant/20">
+                            <p class="text-primary font-display font-extrabold text-2xl sm:text-4xl mb-0.5">1.2M</p>
+                            <p class="text-on-surface-variant text-[10px] sm:text-xs font-display font-bold uppercase tracking-wider">Trees Protected</p>
                         </div>
-                        <div class="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/20">
-                            <p class="text-primary font-display font-extrabold text-3xl sm:text-4xl mb-1">450</p>
-                            <p class="text-on-surface-variant text-xs font-display font-bold uppercase tracking-wider">Local Partners</p>
+                        <div class="bg-surface-container-low p-4 sm:p-6 rounded-2xl border border-outline-variant/20">
+                            <p class="text-primary font-display font-extrabold text-2xl sm:text-4xl mb-0.5">450</p>
+                            <p class="text-on-surface-variant text-[10px] sm:text-xs font-display font-bold uppercase tracking-wider">Local Partners</p>
                         </div>
-                        <div class="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/20">
-                            <p class="text-primary font-display font-extrabold text-3xl sm:text-4xl mb-1">100%</p>
-                            <p class="text-on-surface-variant text-xs font-display font-bold uppercase tracking-wider">Carbon Offset</p>
+                        <div class="bg-surface-container-low p-4 sm:p-6 rounded-2xl border border-outline-variant/20">
+                            <p class="text-primary font-display font-extrabold text-2xl sm:text-4xl mb-0.5">100%</p>
+                            <p class="text-on-surface-variant text-[10px] sm:text-xs font-display font-bold uppercase tracking-wider">Carbon Offset</p>
                         </div>
-                        <div class="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/20 flex items-center justify-center">
-                            <a href="#signature-trips" class="text-primary font-display font-bold text-sm hover:underline flex items-center gap-1.5">
-                                Learn More <span class="material-symbols-outlined text-base">arrow_right_alt</span>
+                        <div class="bg-surface-container-low p-4 sm:p-6 rounded-2xl border border-outline-variant/20 flex items-center justify-center">
+                            <a href="#signature-trips" class="text-primary font-display font-bold text-xs sm:text-sm hover:underline flex items-center gap-1">
+                                Learn More <span class="material-symbols-outlined text-sm sm:text-base">arrow_right_alt</span>
                             </a>
                         </div>
                     </div>
@@ -652,21 +699,21 @@
         </section>
 
         <!-- SECTION 7: Newsletter -->
-        <section class="px-4 sm:px-8 md:px-margin-desktop mb-20 md:mb-section-gap">
-            <div class="max-w-[1440px] mx-auto relative rounded-[32px] sm:rounded-[40px] overflow-hidden p-8 sm:p-16 md:p-24 text-center shadow-2xl">
+        <section class="px-4 sm:px-8 md:px-margin-desktop mb-14 sm:mb-20 md:mb-section-gap">
+            <div class="max-w-[1440px] mx-auto relative rounded-[28px] sm:rounded-[40px] overflow-hidden p-6 sm:p-16 md:p-24 text-center shadow-2xl">
                 <div class="absolute inset-0 bg-cover bg-center" 
                      style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtAa4UxeFpPD-o6wP1PpDgmMYczDI0xBfP4-M-XifK7ACf86cWDcTDKfE-tPzX8oQpyEUhfgVWDCAAuKeVBBe1veflkMJxlkIoBKGYOJHybFjqRPG3n8xVcGp8Jp1RfAKEUHGzAzOgOl8bSdr5hlHC2ypMBmpg9AMb5-IDp4ZYrkR2ykPE_e8DDYFqbdES78DeGjBdzj3Pl3bLWTIX8dXPO7TSe3FZsPjN18dhjp2_m5q-TQCNFB90rNDeT4CJsrHuk83zn_xlAlLo'), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80');">
                 </div>
                 <div class="absolute inset-0 bg-primary/85 backdrop-blur-sm"></div>
                 
                 <div class="relative z-10 max-w-2xl mx-auto text-white">
-                    <span class="inline-block font-display text-xs font-bold uppercase tracking-[0.2em] text-on-primary-container mb-3">STAY INSPIRED</span>
-                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-white mb-4 leading-tight">Join Our Adventure Community</h2>
-                    <p class="text-white/80 mb-8 font-sans text-base sm:text-lg">Get curated travel stories, high-altitude expedition reports, and priority early access to new trips.</p>
+                    <span class="inline-block font-display text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-on-primary-container mb-2 sm:mb-3">STAY INSPIRED</span>
+                    <h2 class="font-display font-extrabold text-2xl sm:text-4xl md:text-5xl text-white mb-3 sm:mb-4 leading-tight">Join Our Adventure Community</h2>
+                    <p class="text-white/80 mb-6 sm:mb-8 font-sans text-xs sm:text-lg">Get curated travel stories, high-altitude expedition reports, and priority early access to new trips.</p>
                     
                     <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
-                        <input id="newsletter-email" required class="flex-1 bg-white/10 border border-white/20 rounded-full px-6 py-4 text-white placeholder-white/50 focus:ring-2 focus:ring-on-primary-container outline-none backdrop-blur-md font-sans text-sm" placeholder="Enter your email address" type="email"/>
-                        <button type="submit" class="bg-on-primary-container text-primary font-display font-bold text-xs uppercase tracking-wider px-8 py-4 rounded-full transition-all hover:bg-white hover:scale-105 active:scale-95 shadow-xl shrink-0">
+                        <input id="newsletter-email" required class="flex-1 bg-white/10 border border-white/20 rounded-full px-5 py-3.5 text-white placeholder-white/50 focus:ring-2 focus:ring-on-primary-container outline-none backdrop-blur-md font-sans text-xs sm:text-sm" placeholder="Enter your email address" type="email"/>
+                        <button type="submit" class="bg-on-primary-container text-primary font-display font-bold text-xs uppercase tracking-wider px-7 py-3.5 rounded-full transition-all hover:bg-white hover:scale-105 active:scale-95 shadow-xl shrink-0 min-h-[44px]">
                             Subscribe
                         </button>
                     </form>
@@ -676,14 +723,14 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-primary text-white py-16 sm:py-24 border-t border-white/10">
-        <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-margin-desktop grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+    <footer class="bg-primary text-white py-12 sm:py-24 border-t border-white/10">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-margin-desktop grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10">
             <div class="col-span-1 sm:col-span-2 md:col-span-1">
-                <div class="flex items-center gap-3 mb-6">
-                    <span class="material-symbols-outlined text-on-primary-container text-3xl">landscape</span>
-                    <span class="font-display font-extrabold text-xl tracking-tight">LIDTRAVEL ALPINE</span>
+                <div class="flex items-center gap-2.5 mb-4 sm:mb-6">
+                    <span class="material-symbols-outlined text-on-primary-container text-2xl sm:text-3xl">landscape</span>
+                    <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight">LIDTRAVEL ALPINE</span>
                 </div>
-                <p class="text-outline-variant font-sans text-xs leading-relaxed max-w-xs mb-6">
+                <p class="text-outline-variant font-sans text-xs leading-relaxed max-w-xs mb-5 sm:mb-6">
                     © 2026 Lidtravel Alpine Co. Built for the modern explorer. Experience the world's most remote alpine destinations with world-class local experts.
                 </p>
                 <div class="flex gap-3">
@@ -700,8 +747,8 @@
             </div>
 
             <div>
-                <h4 class="text-white font-display font-bold text-xs uppercase tracking-widest mb-6">Explore</h4>
-                <ul class="space-y-3 font-sans text-xs text-outline-variant">
+                <h4 class="text-white font-display font-bold text-xs uppercase tracking-widest mb-4 sm:mb-6">Explore</h4>
+                <ul class="space-y-2.5 sm:space-y-3 font-sans text-xs text-outline-variant">
                     <li><a class="hover:text-white transition-colors" href="#destinations">Destinations</a></li>
                     <li><a class="hover:text-white transition-colors" href="#experiences">Experiences</a></li>
                     <li><a class="hover:text-white transition-colors" href="#signature-trips">Signature Trips</a></li>
@@ -710,8 +757,8 @@
             </div>
 
             <div>
-                <h4 class="text-white font-display font-bold text-xs uppercase tracking-widest mb-6">Adventure Co.</h4>
-                <ul class="space-y-3 font-sans text-xs text-outline-variant">
+                <h4 class="text-white font-display font-bold text-xs uppercase tracking-widest mb-4 sm:mb-6">Adventure Co.</h4>
+                <ul class="space-y-2.5 sm:space-y-3 font-sans text-xs text-outline-variant">
                     <li><a class="hover:text-white transition-colors" href="#why-us">About Us</a></li>
                     <li><a class="hover:text-white transition-colors" href="#sustainability">Sustainability</a></li>
                     <li><a class="hover:text-white transition-colors" href="#why-us">Safety Standards</a></li>
@@ -720,8 +767,8 @@
             </div>
 
             <div>
-                <h4 class="text-white font-display font-bold text-xs uppercase tracking-widest mb-6">Support &amp; Legal</h4>
-                <ul class="space-y-3 font-sans text-xs text-outline-variant">
+                <h4 class="text-white font-display font-bold text-xs uppercase tracking-widest mb-4 sm:mb-6">Support &amp; Legal</h4>
+                <ul class="space-y-2.5 sm:space-y-3 font-sans text-xs text-outline-variant">
                     <li><a class="hover:text-white transition-colors" href="#">Privacy Policy</a></li>
                     <li><a class="hover:text-white transition-colors" href="#">Terms of Service</a></li>
                     <li><a class="hover:text-white transition-colors" href="#">Safety Guidelines</a></li>
@@ -730,7 +777,7 @@
             </div>
         </div>
 
-        <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-margin-desktop mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-outline-variant gap-4">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-margin-desktop mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-outline-variant gap-3 text-center sm:text-left">
             <span>Designed with extraordinary adventure in mind</span>
             <span>All rights reserved. © 2026 Lidtravel Alpine</span>
         </div>
@@ -738,8 +785,8 @@
 
     <!-- INTERACTIVE MODAL: Booking Modal -->
     <div id="booking-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl transform scale-95 transition-transform duration-300 border border-outline-variant/30">
-            <button id="close-modal-btn" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700 p-1 rounded-full">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl transform scale-95 transition-transform duration-300 border border-outline-variant/30 max-h-[90vh] overflow-y-auto">
+            <button id="close-modal-btn" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700 p-1 rounded-full active:scale-95" aria-label="Close Booking Modal">
                 <span class="material-symbols-outlined text-2xl">close</span>
             </button>
             
@@ -748,22 +795,22 @@
                 <span class="font-display font-bold text-xs uppercase tracking-wider">Expedition Booking</span>
             </div>
 
-            <h3 id="modal-trip-title" class="font-display font-bold text-2xl text-primary mb-2">Trip Title</h3>
+            <h3 id="modal-trip-title" class="font-display font-bold text-xl sm:text-2xl text-primary mb-1 sm:mb-2">Trip Title</h3>
             <p id="modal-trip-meta" class="text-xs text-on-surface-variant mb-6 font-display font-semibold">Location • 10 Days</p>
 
             <form id="modal-booking-form" class="space-y-4">
                 <div>
                     <label class="block text-xs font-display font-bold text-gray-700 uppercase tracking-wider mb-1">Full Name</label>
-                    <input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="e.g. Alexander Vance" />
+                    <input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-xs sm:text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="e.g. Alexander Vance" />
                 </div>
                 <div>
                     <label class="block text-xs font-display font-bold text-gray-700 uppercase tracking-wider mb-1">Email Address</label>
-                    <input type="email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="alexander@example.com" />
+                    <input type="email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-xs sm:text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="alexander@example.com" />
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-display font-bold text-gray-700 uppercase tracking-wider mb-1">Travelers</label>
-                        <select id="modal-travelers" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none bg-white">
+                        <select id="modal-travelers" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-xs sm:text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none bg-white">
                             <option value="1">1 Person</option>
                             <option value="2">2 People</option>
                             <option value="3">3 People</option>
@@ -772,13 +819,13 @@
                     </div>
                     <div>
                         <label class="block text-xs font-display font-bold text-gray-700 uppercase tracking-wider mb-1">Total Price</label>
-                        <div id="modal-total-price" class="px-4 py-3 rounded-xl bg-surface-container-low font-display font-bold text-primary text-base flex items-center">
+                        <div id="modal-total-price" class="px-4 py-3 rounded-xl bg-surface-container-low font-display font-bold text-primary text-sm sm:text-base flex items-center">
                             $3,499
                         </div>
                     </div>
                 </div>
 
-                <button type="submit" class="w-full mt-4 bg-primary text-white font-display font-bold text-xs uppercase tracking-wider py-4 rounded-full hover:bg-primary-container transition-all shadow-lg active:scale-95">
+                <button type="submit" class="w-full mt-4 bg-primary text-white font-display font-bold text-xs uppercase tracking-wider py-4 rounded-full hover:bg-primary-container transition-all shadow-lg active:scale-95 min-h-[44px]">
                     Confirm &amp; Reserve Spot
                 </button>
             </form>
@@ -786,7 +833,7 @@
     </div>
 
     <!-- TOAST NOTIFICATION CONTAINER -->
-    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none max-w-sm"></div>
+    <div id="toast-container" class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 z-50 flex flex-col gap-3 pointer-events-none max-w-sm"></div>
 
     <!-- JavaScript Interactivity -->
     <script>
@@ -795,57 +842,98 @@
             // 1. Header scroll state
             const header = document.getElementById('top-nav');
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 40) {
-                    header.classList.add('bg-primary/95', 'backdrop-blur-md', 'shadow-xl', 'py-3');
-                    header.classList.remove('bg-transparent', 'py-4');
+                if (window.scrollY > 30) {
+                    header.classList.add('bg-primary/95', 'backdrop-blur-md', 'shadow-xl', 'py-2.5');
+                    header.classList.remove('bg-transparent', 'py-3.5', 'md:py-4');
                 } else {
-                    header.classList.remove('bg-primary/95', 'backdrop-blur-md', 'shadow-xl', 'py-3');
-                    header.classList.add('bg-transparent', 'py-4');
+                    header.classList.remove('bg-primary/95', 'backdrop-blur-md', 'shadow-xl', 'py-2.5');
+                    header.classList.add('bg-transparent', 'py-3.5', 'md:py-4');
                 }
             });
 
-            // 2. Mobile Menu Drawer Toggle
+            // 2. Mobile Menu Drawer Toggle & Overlay
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const closeDrawerBtn = document.getElementById('close-drawer-btn');
             const mobileDrawer = document.getElementById('mobile-drawer');
+            const mobileDrawerOverlay = document.getElementById('mobile-drawer-overlay');
             const drawerLinks = document.querySelectorAll('.drawer-link');
 
             function toggleDrawer(open) {
                 if (open) {
                     mobileDrawer.classList.remove('translate-x-full');
+                    if (mobileDrawerOverlay) {
+                        mobileDrawerOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                    }
+                    document.body.classList.add('overflow-hidden');
                 } else {
                     mobileDrawer.classList.add('translate-x-full');
+                    if (mobileDrawerOverlay) {
+                        mobileDrawerOverlay.classList.add('opacity-0', 'pointer-events-none');
+                    }
+                    document.body.classList.remove('overflow-hidden');
                 }
             }
 
             if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', () => toggleDrawer(true));
             if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', () => toggleDrawer(false));
+            if (mobileDrawerOverlay) mobileDrawerOverlay.addEventListener('click', () => toggleDrawer(false));
             drawerLinks.forEach(link => link.addEventListener('click', () => toggleDrawer(false)));
 
-            // 3. Category Carousel Slider Controls
+            // 3. Quick Header Search Toggle
+            const searchToggleBtn = document.getElementById('search-toggle-btn');
+            if (searchToggleBtn) {
+                searchToggleBtn.addEventListener('click', () => {
+                    const heroSearchForm = document.getElementById('hero-search-form');
+                    const searchInput = document.getElementById('search-destination');
+                    if (heroSearchForm) {
+                        heroSearchForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        if (searchInput) {
+                            setTimeout(() => searchInput.focus(), 400);
+                        }
+                    }
+                });
+            }
+
+            // Quick Drawer Search Input
+            const drawerSearchInput = document.getElementById('drawer-search-input');
+            if (drawerSearchInput) {
+                drawerSearchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        const val = drawerSearchInput.value.trim();
+                        toggleDrawer(false);
+                        const searchDest = document.getElementById('search-destination');
+                        if (searchDest) searchDest.value = val;
+                        filterTrips('', val);
+                        const tripsSection = document.getElementById('signature-trips');
+                        tripsSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+
+            // 4. Category Carousel Slider Controls
             const slider = document.getElementById('category-slider');
             const prevBtn = document.getElementById('slider-prev');
             const nextBtn = document.getElementById('slider-next');
 
             if (prevBtn && slider) {
                 prevBtn.addEventListener('click', () => {
-                    slider.scrollBy({ left: -320, behavior: 'smooth' });
+                    slider.scrollBy({ left: -280, behavior: 'smooth' });
                 });
             }
             if (nextBtn && slider) {
                 nextBtn.addEventListener('click', () => {
-                    slider.scrollBy({ left: 320, behavior: 'smooth' });
+                    slider.scrollBy({ left: 280, behavior: 'smooth' });
                 });
             }
 
-            // 4. Toast Notification Utility
+            // 5. Toast Notification Utility
             function showToast(message, icon = 'check_circle') {
                 const toastContainer = document.getElementById('toast-container');
                 const toast = document.createElement('div');
-                toast.className = 'glass-dark text-white p-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-toast pointer-events-auto border border-white/20';
+                toast.className = 'glass-dark text-white p-3.5 sm:p-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-toast pointer-events-auto border border-white/20';
                 toast.innerHTML = `
-                    <span class="material-symbols-outlined text-on-primary-container text-xl">${icon}</span>
-                    <span class="text-xs font-display font-semibold flex-1">${message}</span>
+                    <span class="material-symbols-outlined text-on-primary-container text-lg sm:text-xl shrink-0">${icon}</span>
+                    <span class="text-xs font-display font-semibold flex-1 leading-snug">${message}</span>
                 `;
                 toastContainer.appendChild(toast);
                 setTimeout(() => {
@@ -856,7 +944,7 @@
                 }, 3500);
             }
 
-            // 5. Favorites / Wishlist Management
+            // 6. Favorites / Wishlist Management
             const wishlist = new Set();
             const wishlistCountBadge = document.getElementById('wishlist-count');
             const favBtns = document.querySelectorAll('.favorite-toggle-btn');
@@ -892,7 +980,7 @@
                 });
             });
 
-            // 6. Interactive Search & Category Filtering
+            // 7. Interactive Search & Category Filtering
             const heroSearchForm = document.getElementById('hero-search-form');
             const tripCards = document.querySelectorAll('.trip-card');
 
@@ -942,7 +1030,7 @@
                 });
             });
 
-            // 7. Booking Modal Logic
+            // 8. Booking Modal Logic
             const bookingModal = document.getElementById('booking-modal');
             const closeModalBtn = document.getElementById('close-modal-btn');
             const bookNowBtns = document.querySelectorAll('.book-now-btn');
@@ -964,12 +1052,14 @@
                 bookingModal.classList.remove('opacity-0', 'pointer-events-none');
                 bookingModal.querySelector('> div').classList.remove('scale-95');
                 bookingModal.querySelector('> div').classList.add('scale-100');
+                document.body.classList.add('overflow-hidden');
             }
 
             function closeBookingModal() {
                 bookingModal.classList.add('opacity-0', 'pointer-events-none');
                 bookingModal.querySelector('> div').classList.remove('scale-100');
                 bookingModal.querySelector('> div').classList.add('scale-95');
+                document.body.classList.remove('overflow-hidden');
             }
 
             function updateModalPrice() {
@@ -1005,7 +1095,7 @@
                 });
             }
 
-            // 8. Newsletter Subscription
+            // 9. Newsletter Subscription
             const newsletterForm = document.getElementById('newsletter-form');
             if (newsletterForm) {
                 newsletterForm.addEventListener('submit', (e) => {
@@ -1015,7 +1105,7 @@
                 });
             }
 
-            // 9. Intersection Observer Scroll Fade-in
+            // 10. Smooth Intersection Observer Scroll Fade-in (Responsive for mobile)
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1023,7 +1113,7 @@
                         entry.target.classList.remove('opacity-0', 'translate-y-8');
                     }
                 });
-            }, { threshold: 0.08 });
+            }, { threshold: 0.02, rootMargin: '0px 0px -40px 0px' });
 
             document.querySelectorAll('section > div').forEach(el => {
                 el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
