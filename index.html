@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" class="scroll-smooth">
 
@@ -1364,7 +1364,7 @@
 
                         <div class="w-[220px] sm:w-[240px] md:w-[250px] lg:w-[260px] h-[360px] sm:h-[390px] md:h-[420px] rounded-2xl overflow-hidden relative snap-start group/card cursor-pointer shadow-md hover-lift shrink-0">
 
-                            <img src="https://images.unsplash.com/photo-1517649763962-0c623266010b?auto=format&fit=crop&w=800&q=80" alt="Level 2 Easy-Moderate" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
+                            <img src="https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?auto=format&fit=crop&w=800&q=80" alt="Level 2 Easy-Moderate" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
 
                             <div class="absolute inset-0 bg-gradient-to-b from-black/85 via-black/25 to-black/75"></div>
 
@@ -1803,151 +1803,328 @@
         <!-- NEW SECTION: LAST MINUTE / POPULAR / JUST ADDED CAROUSEL (Exact Replica & Animated Tabs) -->
 
                 <!-- NEW SECTION: LAST MINUTE / POPULAR / JUST ADDED CAROUSEL (Exact Replica & Animated Tabs) -->
-        <section id="trip-tabs-carousel" class="py-10 sm:py-14 bg-white border-b border-gray-200 overflow-hidden">
+        <section id="trip-tabs-carousel" class="py-12 sm:py-16 bg-white border-b border-gray-200 overflow-hidden">
             <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-margin-desktop">
 
-                <!-- Section Tabs Header with normal padding -->
-                <div id="trip-tabs-header" class="relative flex items-center gap-6 mb-8 pb-0">
-                    <button id="tab-btn-lastminute" onclick="switchTripTab('lastminute')" class="trip-filter-tab font-display font-extrabold text-xs sm:text-sm text-brand-dark tracking-widest uppercase cursor-pointer pb-2 transition-colors duration-200">
+                <!-- Section Tabs Header with indicator bar -->
+                <div id="trip-tabs-header" class="relative flex items-center gap-6 sm:gap-8 mb-8 pb-1 border-b border-gray-100">
+                    <button id="tab-btn-lastminute" onclick="switchTripTab('lastminute')" class="trip-filter-tab font-display font-extrabold text-xs sm:text-sm text-brand-dark tracking-widest uppercase cursor-pointer pb-2.5 transition-colors duration-200">
                         LAST MINUTE
                     </button>
-                    <button id="tab-btn-popular" onclick="switchTripTab('popular')" class="trip-filter-tab font-display font-extrabold text-xs sm:text-sm text-gray-400 hover:text-brand-dark tracking-widest uppercase cursor-pointer pb-2 transition-colors duration-200">
+                    <button id="tab-btn-popular" onclick="switchTripTab('popular')" class="trip-filter-tab font-display font-extrabold text-xs sm:text-sm text-gray-400 hover:text-brand-dark tracking-widest uppercase cursor-pointer pb-2.5 transition-colors duration-200">
                         POPULAR
                     </button>
-                    <button id="tab-btn-justadded" onclick="switchTripTab('justadded')" class="trip-filter-tab font-display font-extrabold text-xs sm:text-sm text-gray-400 hover:text-brand-dark tracking-widest uppercase cursor-pointer pb-2 transition-colors duration-200">
+                    <button id="tab-btn-justadded" onclick="switchTripTab('justadded')" class="trip-filter-tab font-display font-extrabold text-xs sm:text-sm text-gray-400 hover:text-brand-dark tracking-widest uppercase cursor-pointer pb-2.5 transition-colors duration-200">
                         JUST ADDED
                     </button>
                     <!-- Sliding green underline indicator -->
-                    <div id="trip-tab-indicator" style="position:absolute; bottom:0; height:3px; background:#A0CC3D; border-radius:9999px; transition: left 0.3s cubic-bezier(0.4,0,0.2,1), width 0.3s cubic-bezier(0.4,0,0.2,1); pointer-events:none;"></div>
+                    <div id="trip-tab-indicator" style="position:absolute; bottom:-1px; height:3px; background:#A0CC3D; border-radius:9999px; transition: left 0.3s cubic-bezier(0.4,0,0.2,1), width 0.3s cubic-bezier(0.4,0,0.2,1); pointer-events:none;"></div>
                 </div>
 
-                <!-- Carousel Wrapper: clean, edge-to-edge container -->
+                <!-- Carousel Wrapper -->
                 <div class="relative">
                     <!-- LEFT Arrow — hidden until user scrolls right -->
                     <button id="trip-prev-btn"
-                            onclick="document.getElementById('trip-tabs-track').scrollBy({left:-320,behavior:'smooth'})"
-                            class="hidden absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white text-brand-dark rounded-full shadow-xl border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition-all z-50 active:scale-95 cursor-pointer">
-                        <span class="material-symbols-outlined text-xl">chevron_left</span>
+                            onclick="document.getElementById('trip-tabs-track').scrollBy({left:-340,behavior:'smooth'})"
+                            class="hidden absolute left-2 top-1/2 -translate-y-1/2 w-11 h-11 bg-white text-brand-dark rounded-full shadow-xl border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition-all z-50 active:scale-95 cursor-pointer">
+                        <span class="material-symbols-outlined text-2xl">chevron_left</span>
                     </button>
 
-                    <!-- Card Track -->
+                    <!-- Card Track with enlarged card dimensions -->
                     <div id="trip-tabs-track"
-                         style="transition: opacity 0.18s ease, transform 0.18s ease;"
-                         class="flex gap-3 sm:gap-4 overflow-x-auto hide-scrollbar snap-x snap-mandatory scroll-smooth pb-4">
+                         style="transition: opacity 0.2s ease, transform 0.2s ease;"
+                         class="flex gap-4 sm:gap-5 overflow-x-auto hide-scrollbar snap-x snap-mandatory scroll-smooth pb-4">
 
-                        <!-- Card 1: Huayhuash -->
-                        <div class="w-[185px] sm:w-[195px] md:w-[205px] h-[300px] sm:h-[320px] md:h-[340px] rounded-xl overflow-hidden relative snap-start shrink-0 cursor-pointer group/card shadow-md">
-                            <img src="https://images.ctfassets.net/m5us57n7qfgl/2bmYsNt4LWWnWJLNdow6Oa/075db45ae1d0abffd91939b1929015d5/hiker-huayhuash-peru-getty.jpg" alt="Huayhuash Peru" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                            <div class="absolute inset-x-0 bottom-0 p-3.5 text-white">
-                                <h3 class="font-display font-black text-[11px] sm:text-xs uppercase leading-tight tracking-tight mb-1.5">TREK THE HUAYHUASH CIRCUIT IN PERU</h3>
-                                <p class="text-[10px] text-white/80 font-sans mb-1.5">15 nights from <span class="line-through text-white/50">&pound;2,444</span> <span class="text-[#FF3B30] font-bold text-xs ml-0.5">&pound;2,200</span></p>
-                                <div class="flex items-center gap-1.5 text-[10px] font-sans">
-                                    <span class="text-white/70 font-semibold">Level 6</span>
-                                    <div class="w-10 h-1 bg-white/25 rounded-full overflow-hidden"><div class="h-full w-[88%] bg-[#F59E0B] rounded-full"></div></div>
+                        <!-- Card 1: Norwegian Fjords -->
+                        <div class="w-[230px] sm:w-[250px] md:w-[260px] lg:w-[270px] h-[380px] sm:h-[410px] md:h-[440px] rounded-2xl overflow-hidden relative snap-start shrink-0 cursor-pointer group/card shadow-lg hover-lift">
+                            <img src="https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?auto=format&fit=crop&w=800&q=80" alt="Norwegian Fjords" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent"></div>
+                            <div class="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-white flex flex-col justify-end">
+                                <h3 class="font-display font-black text-xs sm:text-sm uppercase leading-snug tracking-tight mb-2">THE ULTIMATE NORWEGIAN FJORDS ADVENTURE</h3>
+                                <p class="text-xs text-white/80 font-sans mb-3">8 nights from <span class="line-through text-white/50">&pound;3,389</span> <span class="text-[#FF3B30] font-extrabold text-sm ml-1">&pound;3,050</span></p>
+                                <div class="flex items-center justify-between text-xs font-sans border-t border-white/15 pt-2.5">
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="text-white/80 font-semibold text-[11px]">Level 4</span>
+                                        <div class="w-10 h-1.5 bg-white/25 rounded-full overflow-hidden"><div class="h-full w-[80%] bg-[#2563EB] rounded-full"></div></div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <span class="text-amber-400 text-xs font-bold">&#9733; 4.9</span>
+                                        <span class="text-white/60 text-[11px]">(69 reviews)</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Card 2: Angkor Wat -->
-                        <div class="w-[185px] sm:w-[195px] md:w-[205px] h-[300px] sm:h-[320px] md:h-[340px] rounded-xl overflow-hidden relative snap-start shrink-0 cursor-pointer group/card shadow-md">
-                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Angkor Wat" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                            <div class="absolute inset-x-0 bottom-0 p-3.5 text-white">
-                                <h3 class="font-display font-black text-[11px] sm:text-xs uppercase leading-tight tracking-tight mb-1.5">CYCLE THE BACKROADS TO ANGKOR WAT</h3>
-                                <p class="text-[10px] text-white/80 font-sans mb-1.5">10 nights from <span class="line-through text-white/50">&pound;1,959</span> <span class="text-[#FF3B30] font-bold text-xs ml-0.5">&pound;1,763</span></p>
-                                <div class="flex items-center gap-1.5 text-[10px] font-sans">
-                                    <span class="text-white/70 font-semibold">Level 3</span>
-                                    <div class="w-10 h-1 bg-white/25 rounded-full overflow-hidden"><div class="h-full w-[60%] bg-[#3B82F6] rounded-full"></div></div>
+                        <!-- Card 2: Tanzania Safari -->
+                        <div class="w-[230px] sm:w-[250px] md:w-[260px] lg:w-[270px] h-[380px] sm:h-[410px] md:h-[440px] rounded-2xl overflow-hidden relative snap-start shrink-0 cursor-pointer group/card shadow-lg hover-lift">
+                            <img src="https://images.ctfassets.net/m5us57n7qfgl/17hveYMpWYHOFTwwcuada8/4d2a60811815b8a2d80044c3dec617c2/lion-tanzania-shutterstock-.jpg" alt="Tanzania Safari" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent"></div>
+                            <div class="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-white flex flex-col justify-end">
+                                <h3 class="font-display font-black text-xs sm:text-sm uppercase leading-snug tracking-tight mb-2">PREMIUM: SAFARI TO SHORE JOURNEY IN HIDDEN TANZANIA</h3>
+                                <p class="text-xs text-white/80 font-sans mb-3">10 nights from <span class="line-through text-white/50">&pound;3,659</span> <span class="text-[#FF3B30] font-extrabold text-sm ml-1">&pound;3,293</span></p>
+                                <div class="flex items-center justify-between text-xs font-sans border-t border-white/15 pt-2.5">
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="text-white/80 font-semibold text-[11px]">Level 1</span>
+                                        <div class="w-10 h-1.5 bg-white/25 rounded-full overflow-hidden"><div class="h-full w-[20%] bg-[#A0CC3D] rounded-full"></div></div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <span class="text-amber-400 text-xs font-bold">&#9733; 5.0</span>
+                                        <span class="text-white/60 text-[11px]">(86 reviews)</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Card 3: Costa Rica Wildlife -->
-                        <div class="w-[185px] sm:w-[195px] md:w-[205px] h-[300px] sm:h-[320px] md:h-[340px] rounded-xl overflow-hidden relative snap-start shrink-0 cursor-pointer group/card shadow-md">
-                            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="Costa Rica Wildlife" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                            <div class="absolute inset-x-0 bottom-0 p-3.5 text-white">
-                                <h3 class="font-display font-black text-[11px] sm:text-xs uppercase leading-tight tracking-tight mb-1.5">WILDLIFE ADVENTURE IN COSTA RICA</h3>
-                                <p class="text-[10px] text-white/80 font-sans mb-1.5">9 nights from <span class="line-through text-white/50">&pound;2,348</span> <span class="text-[#FF3B30] font-bold text-xs ml-0.5">&pound;2,113</span></p>
-                                <div class="flex items-center gap-1.5 text-[10px] font-sans">
-                                    <span class="text-white/70 font-semibold">Level 2</span>
-                                    <div class="w-10 h-1 bg-white/25 rounded-full overflow-hidden"><div class="h-full w-[40%] bg-[#A0CC3D] rounded-full"></div></div>
+                        <!-- Card 3: Costa Rica -->
+                        <div class="w-[230px] sm:w-[250px] md:w-[260px] lg:w-[270px] h-[380px] sm:h-[410px] md:h-[440px] rounded-2xl overflow-hidden relative snap-start shrink-0 cursor-pointer group/card shadow-lg hover-lift">
+                            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="Camino de Costa Rica" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent"></div>
+                            <div class="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-white flex flex-col justify-end">
+                                <h3 class="font-display font-black text-xs sm:text-sm uppercase leading-snug tracking-tight mb-2">TREK THE CAMINO DE COSTA RICA</h3>
+                                <p class="text-xs text-white/80 font-sans mb-3">9 nights from <span class="line-through text-white/50">&pound;2,241</span> <span class="text-[#FF3B30] font-extrabold text-sm ml-1">&pound;1,905</span></p>
+                                <div class="flex items-center justify-between text-xs font-sans border-t border-white/15 pt-2.5">
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="text-white/80 font-semibold text-[11px]">Level 4</span>
+                                        <div class="w-10 h-1.5 bg-white/25 rounded-full overflow-hidden"><div class="h-full w-[80%] bg-[#2563EB] rounded-full"></div></div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <span class="text-amber-400 text-xs font-bold">&#9733; 4.6</span>
+                                        <span class="text-white/60 text-[11px]">(18 reviews)</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Card 4: Borneo -->
-                        <div class="w-[185px] sm:w-[195px] md:w-[205px] h-[300px] sm:h-[320px] md:h-[340px] rounded-xl overflow-hidden relative snap-start shrink-0 cursor-pointer group/card shadow-md">
-                            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" alt="Borneo Wildlife" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                            <div class="absolute inset-x-0 bottom-0 p-3.5 text-white">
-                                <h3 class="font-display font-black text-[11px] sm:text-xs uppercase leading-tight tracking-tight mb-1.5">WILDLIFE ADVENTURE IN BORNEO</h3>
-                                <p class="text-[10px] text-white/80 font-sans mb-1.5">10 nights from <span class="line-through text-white/50">&pound;2,462</span> <span class="text-[#FF3B30] font-bold text-xs ml-0.5">&pound;2,216</span></p>
-                                <div class="flex items-center gap-1.5 text-[10px] font-sans">
-                                    <span class="text-white/70 font-semibold">Level 2</span>
-                                    <div class="w-10 h-1 bg-white/25 rounded-full overflow-hidden"><div class="h-full w-[40%] bg-[#A0CC3D] rounded-full"></div></div>
-                                    <span class="text-amber-400 text-[9px] font-bold ml-1">&#9733; 5.0</span>
-                                    <span class="text-white/60 text-[9px]">(14 reviews)</span>
+                        <!-- Card 4: Alaska -->
+                        <div class="w-[230px] sm:w-[250px] md:w-[260px] lg:w-[270px] h-[380px] sm:h-[410px] md:h-[440px] rounded-2xl overflow-hidden relative snap-start shrink-0 cursor-pointer group/card shadow-lg hover-lift">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Alaska Adventure" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent"></div>
+                            <div class="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-white flex flex-col justify-end">
+                                <h3 class="font-display font-black text-xs sm:text-sm uppercase leading-snug tracking-tight mb-2">THE ULTIMATE ADVENTURE IN ALASKA</h3>
+                                <p class="text-xs text-white/80 font-sans mb-3">9 nights from <span class="line-through text-white/50">&pound;3,274</span> <span class="text-[#FF3B30] font-extrabold text-sm ml-1">&pound;2,783</span></p>
+                                <div class="flex items-center justify-between text-xs font-sans border-t border-white/15 pt-2.5">
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="text-white/80 font-semibold text-[11px]">Level 2</span>
+                                        <div class="w-10 h-1.5 bg-white/25 rounded-full overflow-hidden"><div class="h-full w-[40%] bg-[#A0CC3D] rounded-full"></div></div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <span class="text-amber-400 text-xs font-bold">&#9733; 5.0</span>
+                                        <span class="text-white/60 text-[11px]">(2 reviews)</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Card 5: Argentina -->
-                        <div class="w-[185px] sm:w-[195px] md:w-[205px] h-[300px] sm:h-[320px] md:h-[340px] rounded-xl overflow-hidden relative snap-start shrink-0 cursor-pointer group/card shadow-md">
-                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Argentina Adventure" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                            <div class="absolute inset-x-0 bottom-0 p-3.5 text-white">
-                                <h3 class="font-display font-black text-[11px] sm:text-xs uppercase leading-tight tracking-tight mb-1.5">THE ULTIMATE ADVENTURE THROUGH ARGENTINA</h3>
-                                <p class="text-[10px] text-white/80 font-sans mb-1.5">10 nights from <span class="line-through text-white/50">&pound;3,728</span> <span class="text-[#FF3B30] font-bold text-xs ml-0.5">&pound;3,355</span></p>
-                                <div class="flex items-center gap-1.5 text-[10px] font-sans">
-                                    <span class="text-white/70 font-semibold">Level 1</span>
-                                    <div class="w-10 h-1 bg-white/25 rounded-full overflow-hidden"><div class="h-full w-[20%] bg-[#A0CC3D] rounded-full"></div></div>
+                        <!-- Card 5: Bosnia -->
+                        <div class="w-[230px] sm:w-[250px] md:w-[260px] lg:w-[270px] h-[380px] sm:h-[410px] md:h-[440px] rounded-2xl overflow-hidden relative snap-start shrink-0 cursor-pointer group/card shadow-lg hover-lift">
+                            <img src="https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=800&q=80" alt="Bosnia Cycling" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent"></div>
+                            <div class="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-white flex flex-col justify-end">
+                                <h3 class="font-display font-black text-xs sm:text-sm uppercase leading-snug tracking-tight mb-2">CYCLE THE BACKROADS OF BOSNIA</h3>
+                                <p class="text-xs text-white/80 font-sans mb-3">7 nights from <span class="line-through text-white/50">&pound;2,143</span> <span class="text-[#FF3B30] font-extrabold text-sm ml-1">&pound;1,929</span></p>
+                                <div class="flex items-center justify-between text-xs font-sans border-t border-white/15 pt-2.5">
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="text-white/80 font-semibold text-[11px]">Level 3</span>
+                                        <div class="w-10 h-1.5 bg-white/25 rounded-full overflow-hidden"><div class="h-full w-[60%] bg-[#3B82F6] rounded-full"></div></div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <span class="text-amber-400 text-xs font-bold">&#9733; 4.8</span>
+                                        <span class="text-white/60 text-[11px]">(42 reviews)</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Card 6: Rajasthan -->
-                        <div class="w-[185px] sm:w-[195px] md:w-[205px] h-[300px] sm:h-[320px] md:h-[340px] rounded-xl overflow-hidden relative snap-start shrink-0 cursor-pointer group/card shadow-md">
-                            <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=80" alt="Rajasthan" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                            <div class="absolute inset-x-0 bottom-0 p-3.5 text-white">
-                                <h3 class="font-display font-black text-[11px] sm:text-xs uppercase leading-tight tracking-tight mb-1.5">PREMIUM: ADVENTURE IN RAJASTHAN</h3>
-                                <p class="text-[10px] text-white/80 font-sans mb-1.5">11 nights from <span class="text-[#FF3B30] font-bold text-xs">&pound;2,850</span></p>
-                                <div class="flex items-center gap-1.5 text-[10px] font-sans">
-                                    <span class="text-white/70 font-semibold">Level 1</span>
-                                    <div class="w-10 h-1 bg-white/25 rounded-full overflow-hidden"><div class="h-full w-[20%] bg-[#A0CC3D] rounded-full"></div></div>
+                        <!-- Card 6: Corsica -->
+                        <div class="w-[230px] sm:w-[250px] md:w-[260px] lg:w-[270px] h-[380px] sm:h-[410px] md:h-[440px] rounded-2xl overflow-hidden relative snap-start shrink-0 cursor-pointer group/card shadow-lg hover-lift">
+                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Corsica GR20" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent"></div>
+                            <div class="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-white flex flex-col justify-end">
+                                <h3 class="font-display font-black text-xs sm:text-sm uppercase leading-snug tracking-tight mb-2">TREK THE GR20 IN CORSICA</h3>
+                                <p class="text-xs text-white/80 font-sans mb-3">7 nights from <span class="line-through text-white/50">&pound;1,799</span> <span class="text-[#FF3B30] font-extrabold text-sm ml-1">&pound;1,619</span></p>
+                                <div class="flex items-center justify-between text-xs font-sans border-t border-white/15 pt-2.5">
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="text-white/80 font-semibold text-[11px]">Level 6</span>
+                                        <div class="w-10 h-1.5 bg-white/25 rounded-full overflow-hidden"><div class="h-full w-[88%] bg-[#F59E0B] rounded-full"></div></div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <span class="text-amber-400 text-xs font-bold">&#9733; 5.0</span>
+                                        <span class="text-white/60 text-[11px]">(7 reviews)</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Card 7 (Callout): VIEW ALL -->
-                        <div class="w-[185px] sm:w-[195px] md:w-[205px] h-[300px] sm:h-[320px] md:h-[340px] rounded-xl overflow-hidden relative snap-start shrink-0 cursor-pointer shadow-md bg-[#111] flex flex-col items-center justify-center text-center p-5">
-                            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:14px_14px]"></div>
+                        <div class="w-[230px] sm:w-[250px] md:w-[260px] lg:w-[270px] h-[380px] sm:h-[410px] md:h-[440px] rounded-2xl overflow-hidden relative snap-start shrink-0 cursor-pointer shadow-lg bg-[#111111] border border-gray-800 flex flex-col justify-center items-center text-center p-6 hover-lift">
+                            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"></div>
                             <div class="relative z-10">
-                                <h3 class="font-display font-black text-sm uppercase tracking-tight text-white leading-snug mb-5">VIEW ALL NEW ADVENTURES</h3>
-                                <a href="#" class="bg-white text-brand-dark font-sans font-bold text-xs px-5 py-2.5 rounded-lg transition-all hover:bg-gray-100 active:scale-95 inline-block">View Adventures</a>
+                                <h3 class="font-display font-black text-base sm:text-lg uppercase tracking-tight text-white leading-snug mb-6">VIEW ALL LAST MINUTE ADVENTURES</h3>
+                                <a href="#" class="bg-white text-brand-dark font-sans font-extrabold text-xs px-6 py-3 rounded-lg transition-all hover:bg-gray-100 active:scale-95 inline-block shadow-sm">View Adventures</a>
                             </div>
                         </div>
 
                     </div>
 
-                    <!-- Dark Right Arrow (always visible, overlays right edge) -->
-                    <button onclick="document.getElementById('trip-tabs-track').scrollBy({left:320,behavior:'smooth'})"
-                            class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#111111] text-white rounded-full shadow-xl flex items-center justify-center hover:bg-black transition-all z-50 active:scale-95 cursor-pointer">
-                        <span class="material-symbols-outlined text-xl">chevron_right</span>
+                    <!-- Dark Right Arrow -->
+                    <button onclick="document.getElementById('trip-tabs-track').scrollBy({left:340,behavior:'smooth'})"
+                            class="absolute right-2 top-1/2 -translate-y-1/2 w-11 h-11 bg-[#111111] text-white rounded-full shadow-xl flex items-center justify-center hover:bg-black transition-all z-50 active:scale-95 cursor-pointer">
+                        <span class="material-symbols-outlined text-2xl">chevron_right</span>
                     </button>
                 </div>
 
                 <!-- Bottom Pagination Dots -->
-                <div class="flex items-center justify-center gap-1.5 mt-5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-dark inline-block"></span>
-                    <span class="w-1.5 h-1.5 rounded-full bg-gray-300 inline-block"></span>
-                    <span class="w-1.5 h-1.5 rounded-full bg-gray-300 inline-block"></span>
+                <div class="flex items-center justify-center gap-2 mt-6">
+                    <span class="w-2 h-2 rounded-full bg-brand-dark inline-block"></span>
+                    <span class="w-2 h-2 rounded-full bg-gray-300 inline-block"></span>
+                    <span class="w-2 h-2 rounded-full bg-gray-300 inline-block"></span>
                 </div>
 
             </div>
         </section>
+
+        <!-- Carousel Tab Switching JS Script -->
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+                window.tripTabsData = {
+                    lastminute: [
+                        { title: "THE ULTIMATE NORWEGIAN FJORDS ADVENTURE", nights: 8, origPrice: "&pound;3,389", price: "&pound;3,050", level: 4, levelPct: "80%", levelBg: "#2563EB", rating: "&#9733; 4.9", reviews: "(69 reviews)", img: "https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?auto=format&fit=crop&w=800&q=80" },
+                        { title: "PREMIUM: SAFARI TO SHORE JOURNEY IN HIDDEN TANZANIA", nights: 10, origPrice: "&pound;3,659", price: "&pound;3,293", level: 1, levelPct: "20%", levelBg: "#A0CC3D", rating: "&#9733; 5.0", reviews: "(86 reviews)", img: "https://images.ctfassets.net/m5us57n7qfgl/17hveYMpWYHOFTwwcuada8/4d2a60811815b8a2d80044c3dec617c2/lion-tanzania-shutterstock-.jpg" },
+                        { title: "TREK THE CAMINO DE COSTA RICA", nights: 9, origPrice: "&pound;2,241", price: "&pound;1,905", level: 4, levelPct: "80%", levelBg: "#2563EB", rating: "&#9733; 4.6", reviews: "(18 reviews)", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" },
+                        { title: "THE ULTIMATE ADVENTURE IN ALASKA", nights: 9, origPrice: "&pound;3,274", price: "&pound;2,783", level: 2, levelPct: "40%", levelBg: "#A0CC3D", rating: "&#9733; 5.0", reviews: "(2 reviews)", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" },
+                        { title: "CYCLE THE BACKROADS OF BOSNIA", nights: 7, origPrice: "&pound;2,143", price: "&pound;1,929", level: 3, levelPct: "60%", levelBg: "#3B82F6", rating: "&#9733; 4.8", reviews: "(42 reviews)", img: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=800&q=80" },
+                        { title: "TREK THE GR20 IN CORSICA", nights: 7, origPrice: "&pound;1,799", price: "&pound;1,619", level: 6, levelPct: "88%", levelBg: "#F59E0B", rating: "&#9733; 5.0", reviews: "(7 reviews)", img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" },
+                        { type: "callout", title: "VIEW ALL LAST MINUTE ADVENTURES", buttonText: "View Adventures" }
+                    ],
+                    popular: [
+                        { title: "HIKE, KAYAK AND WILD CAMP THE NORWEGIAN FJORDS IN A WEEKEND", nights: 3, origPrice: "", price: "&pound;752", level: 4, levelPct: "80%", levelBg: "#2563EB", rating: "&#9733; 4.9", reviews: "(1276 reviews)", img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" },
+                        { title: "COAST TO COAST TRAVERSE OF MADEIRA", nights: 6, origPrice: "", price: "&pound;1,374", level: 4, levelPct: "80%", levelBg: "#2563EB", rating: "&#9733; 4.8", reviews: "(205 reviews)", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" },
+                        { title: "TREK THE TOUR DU MONT BLANC IN A WEEKEND: THE HUT-TO-HUT EDITION", nights: 3, origPrice: "", price: "&pound;856", level: 5, levelPct: "75%", levelBg: "#F59E0B", rating: "&#9733; 4.9", reviews: "(335 reviews)", img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" },
+                        { title: "HIKE AND EXPLORE THE SILK ROAD IN UZBEKISTAN", nights: 9, origPrice: "", price: "&pound;1,487", level: 3, levelPct: "60%", levelBg: "#3B82F6", rating: "&#9733; 5.0", reviews: "(34 reviews)", img: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80" },
+                        { title: "TREK TO MACHU PICCHU AND GO TO THE AMAZON", nights: 10, origPrice: "", price: "&pound;1,734", level: 5, levelPct: "75%", levelBg: "#F59E0B", rating: "&#9733; 4.8", reviews: "(18 reviews)", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" },
+                        { title: "PREMIUM: GREEK ISLAND HOPPING", nights: 7, origPrice: "", price: "&pound;1,899", level: 1, levelPct: "20%", levelBg: "#A0CC3D", rating: "&#9733; 5.0", reviews: "(12 reviews)", img: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=80" },
+                        { type: "callout", title: "VIEW ALL POPULAR ADVENTURES", buttonText: "View Adventures" }
+                    ],
+                    justadded: [
+                        { title: "TREK THE HUAYHUASH CIRCUIT IN PERU", nights: 15, origPrice: "&pound;2,444", price: "&pound;2,200", level: 6, levelPct: "88%", levelBg: "#F59E0B", rating: "&#9733; 5.0", reviews: "(9 reviews)", img: "https://images.ctfassets.net/m5us57n7qfgl/2bmYsNt4LWWnWJLNdow6Oa/075db45ae1d0abffd91939b1929015d5/hiker-huayhuash-peru-getty.jpg" },
+                        { title: "CYCLE THE BACKROADS TO ANGKOR WAT", nights: 10, origPrice: "&pound;1,959", price: "&pound;1,763", level: 3, levelPct: "60%", levelBg: "#3B82F6", rating: "&#9733; 4.9", reviews: "(16 reviews)", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" },
+                        { title: "WILDLIFE ADVENTURE IN COSTA RICA", nights: 9, origPrice: "&pound;2,348", price: "&pound;2,113", level: 2, levelPct: "40%", levelBg: "#A0CC3D", rating: "&#9733; 4.8", reviews: "(24 reviews)", img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" },
+                        { title: "WILDLIFE ADVENTURE IN BORNEO", nights: 10, origPrice: "&pound;2,462", price: "&pound;2,216", level: 2, levelPct: "40%", levelBg: "#A0CC3D", rating: "&#9733; 5.0", reviews: "(14 reviews)", img: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" },
+                        { title: "THE ULTIMATE ADVENTURE THROUGH ARGENTINA", nights: 10, origPrice: "&pound;3,728", price: "&pound;3,355", level: 1, levelPct: "20%", levelBg: "#A0CC3D", rating: "&#9733; 4.9", reviews: "(31 reviews)", img: "https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?auto=format&fit=crop&w=800&q=80" },
+                        { title: "PREMIUM: ADVENTURE IN RAJASTHAN", nights: 11, origPrice: "", price: "&pound;2,850", level: 1, levelPct: "20%", levelBg: "#A0CC3D", rating: "&#9733; 5.0", reviews: "(8 reviews)", img: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=80" },
+                        { type: "callout", title: "VIEW ALL NEW ADVENTURES", buttonText: "View Adventures" }
+                    ]
+                };
+
+                const _tripTabOrder = { lastminute: 0, popular: 1, justadded: 2 };
+                let _currentTripTab = 'lastminute';
+
+                function updateTripTabIndicator(tabName) {
+                    const indicator = document.getElementById('trip-tab-indicator');
+                    const header = document.getElementById('trip-tabs-header');
+                    const btn = document.getElementById('tab-btn-' + tabName);
+                    if (!indicator || !header || !btn) return;
+                    const headerRect = header.getBoundingClientRect();
+                    const btnRect = btn.getBoundingClientRect();
+                    indicator.style.left = (btnRect.left - headerRect.left) + 'px';
+                    indicator.style.width = btnRect.width + 'px';
+                }
+
+                setTimeout(() => updateTripTabIndicator('lastminute'), 50);
+                window.addEventListener('resize', () => updateTripTabIndicator(_currentTripTab));
+
+                (function() {
+                    const track = document.getElementById('trip-tabs-track');
+                    const prevBtn = document.getElementById('trip-prev-btn');
+                    if (track && prevBtn) {
+                        track.addEventListener('scroll', function() {
+                            const scrolled = track.scrollLeft > 10;
+                            prevBtn.classList.toggle('hidden', !scrolled);
+                        }, { passive: true });
+                    }
+                })();
+
+                window.switchTripTab = function(tabName) {
+                    const track = document.getElementById('trip-tabs-track');
+                    const tabs = document.querySelectorAll('.trip-filter-tab');
+                    if (!track || tabName === _currentTripTab) return;
+
+                    const direction = _tripTabOrder[tabName] > _tripTabOrder[_currentTripTab] ? 1 : -1;
+                    _currentTripTab = tabName;
+
+                    tabs.forEach(tab => {
+                        if (tab.id === 'tab-btn-' + tabName) {
+                            tab.classList.add('text-brand-dark');
+                            tab.classList.remove('text-gray-400');
+                        } else {
+                            tab.classList.add('text-gray-400');
+                            tab.classList.remove('text-brand-dark');
+                        }
+                    });
+
+                    updateTripTabIndicator(tabName);
+
+                    track.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+                    track.style.opacity = '0';
+                    track.style.transform = `translateX(${direction * -60}px)`;
+
+                    setTimeout(() => {
+                        const items = window.tripTabsData[tabName] || [];
+                        track.innerHTML = items.map(item => {
+                            if (item.type === 'callout') {
+                                return `
+                                    <div class="w-[230px] sm:w-[250px] md:w-[260px] lg:w-[270px] h-[380px] sm:h-[410px] md:h-[440px] rounded-2xl overflow-hidden relative snap-start shrink-0 cursor-pointer shadow-lg bg-[#111111] border border-gray-800 flex flex-col justify-center items-center text-center p-6 hover-lift">
+                                        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                                        <div class="relative z-10 flex flex-col items-center justify-center h-full">
+                                            <h3 class="font-display font-black text-base sm:text-lg uppercase tracking-tight text-white leading-snug mb-6">
+                                                ${item.title}
+                                            </h3>
+                                            <a href="#" class="bg-white text-brand-dark font-sans font-extrabold text-xs px-6 py-3 rounded-lg transition-all hover:bg-gray-100 active:scale-95 inline-block shadow-sm">
+                                                ${item.buttonText}
+                                            </a>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+
+                            const origPriceHTML = item.origPrice ? `<span class="line-through text-white/50">${item.origPrice}</span> ` : '';
+
+                            return `
+                                <div class="w-[230px] sm:w-[250px] md:w-[260px] lg:w-[270px] h-[380px] sm:h-[410px] md:h-[440px] rounded-2xl overflow-hidden relative snap-start shrink-0 cursor-pointer group/card shadow-lg hover-lift">
+                                    <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent"></div>
+                                    <div class="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-white flex flex-col justify-end">
+                                        <h3 class="font-display font-black text-xs sm:text-sm uppercase leading-snug tracking-tight mb-2">
+                                            ${item.title}
+                                        </h3>
+                                        <p class="text-xs text-white/80 font-sans mb-3">
+                                            ${item.nights} nights from ${origPriceHTML}<span class="text-[#FF3B30] font-extrabold text-sm ml-1">${item.price}</span>
+                                        </p>
+                                        <div class="flex items-center justify-between text-xs font-sans border-t border-white/15 pt-2.5">
+                                            <div class="flex items-center gap-1.5">
+                                                <span class="text-white/80 font-semibold text-[11px]">Level ${item.level}</span>
+                                                <div class="w-10 h-1.5 bg-white/25 rounded-full overflow-hidden">
+                                                    <div class="h-full w-[${item.levelPct}] bg-[${item.levelBg}] rounded-full"></div>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <span class="text-amber-400 text-xs font-bold">${item.rating}</span>
+                                                <span class="text-white/60 text-[11px]">${item.reviews}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('');
+
+                        track.style.transform = `translateX(${direction * 60}px)`;
+                        track.offsetHeight;
+                        track.style.opacity = '1';
+                        track.style.transform = 'translateX(0)';
+                    }, 180);
+                };
+            });
+        </script>
 
 
 
